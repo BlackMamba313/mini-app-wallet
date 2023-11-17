@@ -6,7 +6,7 @@ const BuyPage = () => {
 
   return (
     <>
-      <Header/>
+      <Header title={'Купить'}/>
       <Card/>
       <p>BuyPage</p>
     </>

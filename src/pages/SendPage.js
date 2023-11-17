@@ -6,7 +6,7 @@ const SendPage = () => {
 
   return (
     <>
-      <Header/>
+      <Header title={'Отправить'}/>
       <Card/>
       <p>SendPage</p>
     </>

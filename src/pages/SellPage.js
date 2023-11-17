@@ -6,7 +6,7 @@ const SellPage = () => {
 
   return (
     <>
-      <Header/>
+      <Header title={'Продать'}/>
       <Card/>
       <p>SellPage</p>
     </>

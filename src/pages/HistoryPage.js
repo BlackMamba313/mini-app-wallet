@@ -6,7 +6,7 @@ const HistoryPage = () => {
 
   return (
     <>
-      <Header/>
+      <Header title={'История сделок'}/>
       <Card/>
       <p>HistoryPage</p>
     </>

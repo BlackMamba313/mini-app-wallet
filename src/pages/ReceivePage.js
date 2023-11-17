@@ -6,7 +6,7 @@ const ReceivePage = () => {
 
   return (
     <>
-      <Header/>
+      <Header title={'Получить'}/>
       <Card/>
       <p>ReceivePage</p>
     </>

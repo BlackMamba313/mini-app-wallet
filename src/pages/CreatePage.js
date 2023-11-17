@@ -6,7 +6,7 @@ const CreatePage = () => {
 
   return (
     <>
-      <Header/>
+      <Header title={'Создать сделку'}/>
       <Card/>
       <p>CreatePage</p>
     </>
