@@ -1,27 +1,28 @@
 import React from 'react';
 import './ControlButtons.css';
+import {useNavigate} from "react-router-dom";
 
 const ControlButtons = () => {
-
+  const navigate = useNavigate();
   return (
     <div className='wrapper'>
       <div className='buttonWrapper'>
-        <div className="buttonHalf button">
+        <div onClick={()=>navigate(`/receive`)} className="buttonHalf button">
           Получить
         </div>
-        <div className="buttonHalf button">
+        <div onClick={()=>navigate(`/buy`)} className="buttonHalf button">
           Купить
         </div>
-        <div className="buttonHalf button">
+        <div onClick={()=>navigate(`/send`)} className="buttonHalf button">
           Отправить
         </div>
-        <div className="buttonHalf button">
+        <div onClick={()=>navigate(`/sell`)} className="buttonHalf button">
           Продать
         </div>
-        <div className='button'>
+        <div onClick={()=>navigate(`/create`)} className='button'>
           Создать сделку
         </div>
-        <div className='button'>
+        <div onClick={()=>navigate(`/history`)} className='button'>
           Сделки
         </div>
       </div>
