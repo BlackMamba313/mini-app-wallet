@@ -9,3 +9,14 @@
 .username {
     margin-left: auto;
 }
+
+.cost {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 22px;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
