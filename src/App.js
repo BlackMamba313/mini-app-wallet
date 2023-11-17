@@ -6,7 +6,7 @@ import {Route, Routes} from 'react-router-dom'
 import MainPage from "./pages/MainPage";
 
 function App() {
-  const { tg} = useTelegram();
+  const {tg} = useTelegram();
 
   useEffect(() => {
     tg.ready();
@@ -14,7 +14,6 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
       <Routes>
         <Route index element={<MainPage />}/>
       </Routes>
