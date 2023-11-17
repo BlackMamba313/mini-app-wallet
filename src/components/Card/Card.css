@@ -54,7 +54,7 @@
 }
 
 .cardFooterBox {
-    width: 48%;
+    width: 50%;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;

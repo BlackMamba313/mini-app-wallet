@@ -18,7 +18,7 @@ const Card = () => {
         <p className='subBalance'>542441.01₽</p>
         <p className='walletNumber'>0x22aBb2d0e8A52eF99B8C095EFdC709176574AA82</p>
         <p className='userName'>Ваше имя пользователя:
-          {user.name}
+          {user?.username}
         </p>
         <div className='cardFooter'>
           <div className='cardFooterBox'>
