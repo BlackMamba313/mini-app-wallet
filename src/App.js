@@ -6,11 +6,11 @@ import {Route, Routes} from 'react-router-dom'
 import MainPage from "./pages/MainPage";
 
 function App() {
-  const {onToggleButton, tg} = useTelegram();
+  const { tg} = useTelegram();
 
   useEffect(() => {
     tg.ready();
-  }, [])
+  }, [tg])
 
   return (
     <div className="App">
