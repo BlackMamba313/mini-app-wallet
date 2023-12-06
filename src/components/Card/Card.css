@@ -1,17 +1,16 @@
 .wrapper {
     display: flex;
     justify-content: center;
-    margin-bottom: 60px;
+    margin-bottom: 30px;
 }
 
 .card {
     padding: 12px;
     width: 90%;
     height: 220px;
-    border-radius: 7px;
-    border: 3px solid #011305;
-    background: linear-gradient(135deg, #2D2F2E 4.97%, #0C0E0D 96.03%);
-    box-shadow: -2px -2px 3px 0 #92AA9B inset, 2px 2px 6px 0 #000 inset;
+    border-radius: 25px;
+    background: var(--button-BColor);
+
 }
 
 .cardHeader {
