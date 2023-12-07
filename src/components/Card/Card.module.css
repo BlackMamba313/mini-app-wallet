@@ -1,16 +1,15 @@
 .wrapper {
     display: flex;
     justify-content: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .card {
     padding: 12px;
     width: 90%;
-    height: 220px;
+    height: 200px;
     border-radius: 25px;
     background: var(--button-BColor);
-
 }
 
 .cardHeader {

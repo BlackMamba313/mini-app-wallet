@@ -1,5 +1,5 @@
 import React from 'react';
-import './Header.css';
+import styles from './Header.module.css';
 import ReturnIcon from "../../assets/ReturnIcon";
 import {useNavigate} from "react-router-dom";
 
@@ -11,14 +11,14 @@ const Header = ({title}) => {
   console.log(navigate)
   return (
     <div>
-      {title && <div className='header'>
-        <div onClick={() => navigate(-1)} className='btnReturn'>
+      {title && <div className={styles.header}>
+        <div onClick={() => navigate(-1)} className={styles.btnReturn}>
           <ReturnIcon/>
         </div>
         <h2>{title}</h2>
       </div>
       }
-    <div className='cost'>
+    <div className={styles.cost}>
       {moskData.cost}
     </div>
     </div>

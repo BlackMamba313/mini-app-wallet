@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from "../components/Header";
 import Card from "../components/Card";
+import QrCode from "../components/QrCode";
 
 const ReceivePage = () => {
 
@@ -8,7 +9,7 @@ const ReceivePage = () => {
     <>
       <Header title={'Получить'}/>
       <Card/>
-      <p>ReceivePage</p>
+      <QrCode/>
     </>
   );
 };
