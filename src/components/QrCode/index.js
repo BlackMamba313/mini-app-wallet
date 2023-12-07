@@ -23,6 +23,7 @@ const QrCode = () => {
       </div>
       <p className={styles.text}>Запросить перевод у контакта </p>
       <input
+        type="number"
       placeholder='Введите сумму'
         className={styles.input}/>
     </div>
