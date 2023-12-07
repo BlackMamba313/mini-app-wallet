@@ -14,7 +14,7 @@ const Card = () => {
           <p className={styles.cardTitle}>Ваш баланс</p>
           <p className={styles.cardTitle}>BTC/RUB</p>
         </div>
-        <p className={styles.mainBalance}>0.1230</p>
+        <p className={styles.mainBalance}>100000</p>
         <p className={styles.subBalance}>542441.01₽</p>
         <p className={styles.walletNumber}>0x22aBb2d0e8A52eF99B8C095EFdC709176574AA82</p>
         <p className={styles.userName}>Ваше имя пользователя:
