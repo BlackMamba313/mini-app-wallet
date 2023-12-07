@@ -3,7 +3,7 @@ import styles from './QrCode.module.css';
 import QRCode from "react-qr-code";
 
 const QrCode = () => {
-  const [qrValue, setQrValue] = useState('');
+  const [qrValue] = useState('');
 
   return (
     <div className={styles.wrapper}>
