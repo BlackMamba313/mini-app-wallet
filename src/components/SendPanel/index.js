@@ -8,7 +8,7 @@ const SendPanel = () => {
       <p className={styles.text}>Выберите контракт</p>
       <input
         type="text"
-        placeholder='Введите сумму'
+        placeholder='Выберите контакт'
         className={styles.input}/>
       <input
         type="number"

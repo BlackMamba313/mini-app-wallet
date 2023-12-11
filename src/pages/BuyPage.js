@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from "../components/Header";
 import Card from "../components/Card";
+import BuyPanel from "../components/BuyPanel";
 
 const BuyPage = () => {
 
@@ -8,7 +9,7 @@ const BuyPage = () => {
     <>
       <Header title={'Купить'}/>
       <Card/>
-      <p>BuyPage</p>
+      <BuyPanel/>
     </>
   );
 };

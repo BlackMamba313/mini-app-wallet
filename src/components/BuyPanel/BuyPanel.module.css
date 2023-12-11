@@ -1,34 +1,33 @@
 .wrapper {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
-.buttonWrapper {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    width: 90%;
-    gap: 10px;
+.textHead {
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+
+.text {
+    font-size: 23px;
+    font-weight: 100;
 }
 
 .button {
     cursor: pointer;
-    width: 100%;
-    height: 74px;
+    width: 60%;
+    height: 52px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 31px;
+    font-size: 24px;
     font-weight: 700;
     border-radius: 15px;
     color: var(--button-color);
-
     position: relative;
     overflow: hidden;
-}
-
-.buttonHalf {
-    width: calc(50% - 5px);
+    margin-bottom: 10px;
 }
 
 .buttonBg {
