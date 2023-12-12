@@ -4,7 +4,7 @@ import {useTelegram} from "../../hooks/useTelegram";
 import SecurityIcon from "../../assets/SecurityIcon";
 import AccountIcon from "../../assets/AccountIcon";
 
-const Card = () => {
+const Card = ({id, currency, walletNumber}) => {
   const {user} = useTelegram();
 
   return (
@@ -12,17 +12,17 @@ const Card = () => {
       <div className={styles.card}>
         <div className={styles.cardHeader}>
           <p className={styles.cardTitle}>Ваш баланс</p>
-          <p className={styles.cardTitle}>BTC/RUB</p>
+          <p className={styles.currency}>{currency}</p>
         </div>
         <p className={styles.mainBalance}>100000</p>
         <p className={styles.subBalance}>542441.01₽</p>
-        <p className={styles.walletNumber}>0x22aBb2d0e8A52eF99B8C095EFdC709176574AA82</p>
+        <p className={styles.walletNumber}>{walletNumber}</p>
         <p className={styles.userName}>Ваше имя пользователя:
           {user?.username}
         </p>
         <div className={styles.cardFooter}>
           <div className={styles.cardFooterBox}>
-            <p className={styles.cardId}><AccountIcon/> ID 098311</p>
+            <p className={styles.cardId}><AccountIcon/> ID {id}</p>
           </div>
           <div className={styles.cardFooterBox}>
               <p className={styles.cardStatus}> <SecurityIcon/> Не проверено!</p>

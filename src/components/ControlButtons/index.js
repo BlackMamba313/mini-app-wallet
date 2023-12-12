@@ -27,19 +27,19 @@ const ControlButtons = () => {
             Продать
           </div>
         </div>
-        <div onClick={() => navigate(`/create`)} className={styles.button}>
-          <div className={styles.buttonBg}>
-            Создать сделку
-          </div>
-        </div>
-        <div onClick={() => navigate(`/history`)} className={styles.button}>
-          <div className={styles.buttonBg}>
-            Сделки
-          </div>
-        </div>
         <div onClick={() => navigate(`/history`)} className={styles.button}>
           <div className={styles.buttonBg}>
             Партнерские платежи
+          </div>
+        </div>
+        {/*<div onClick={() => navigate(`/create`)} className={styles.button}>*/}
+        {/*  <div className={styles.buttonBg}>*/}
+        {/*    Создать сделку*/}
+        {/*  </div>*/}
+        {/*</div>*/}
+        <div onClick={() => navigate(`/history`)} className={styles.button}>
+          <div className={styles.buttonBg}>
+            Сделки
           </div>
         </div>
       </div>

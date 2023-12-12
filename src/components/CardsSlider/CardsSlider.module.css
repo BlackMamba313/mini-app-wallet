@@ -5,7 +5,6 @@
 }
 
 .card {
-    position: relative;
     padding: 12px;
     width: 90%;
     height: 200px;
@@ -24,13 +23,6 @@
 }
 
 .mainBalance {
-    font-size: 31px;
-    font-weight: 700;
-}
-
-.currency {
-    position: absolute;
-    right: 20px;
     font-size: 31px;
     font-weight: 700;
 }

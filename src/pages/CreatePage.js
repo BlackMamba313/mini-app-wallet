@@ -1,13 +1,13 @@
 import React from 'react';
 import Header from "../components/Header";
-import Card from "../components/Card";
+import CardsSlider from "../components/CardsSlider";
 
 const CreatePage = () => {
 
   return (
     <>
       <Header title={'Создать сделку'}/>
-      <Card/>
+      <CardsSlider/>
       <p>CreatePage</p>
     </>
   );
