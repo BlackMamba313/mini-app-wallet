@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import ControlButtons from "../components/ControlButtons";
 import CardsSlider from "../components/CardsSlider";
 
+
 const MainPage = () => {
 
   return (
