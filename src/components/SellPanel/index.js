@@ -1,15 +1,10 @@
 import React from "react";
-import styles from './BuyPanel.module.css';
+import styles from './SellPanel.module.css';
 
-const BuyPanel = () => {
+const SellPanel = () => {
 
   return (
     <div className={styles.wrapper}>
-      <div  className={styles.button}>
-        <div className={styles.buttonBg}>
-          Предложения: 285
-        </div>
-      </div>
       <p className={styles.text}>Выберите Способ</p>
       <div className={styles.payWrapper}>
         <div className={styles.payBtn}>
@@ -28,12 +23,20 @@ const BuyPanel = () => {
           Union
         </div>
       </div>
-      <div  className={styles.button}>
-        <div className={styles.buttonBg}>
-          Подать объявление
-        </div>
-      </div>
+      <input
+        type="number"
+        placeholder='Выберите свою цену'
+        className={styles.input}/>
+      <input
+        type="text"
+        placeholder='Условия сделки'
+        className={styles.input}/>
+
+      <input
+        type="number"
+        placeholder='Лимиты'
+        className={styles.input}/>
     </div>
   );
 }
-export default BuyPanel;
+export default SellPanel;

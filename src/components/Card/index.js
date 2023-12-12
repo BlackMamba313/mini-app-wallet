@@ -22,12 +22,10 @@ const Card = () => {
         </p>
         <div className={styles.cardFooter}>
           <div className={styles.cardFooterBox}>
-            <AccountIcon/>
-            <p className={styles.cardId}>ID 098311</p>
+            <p className={styles.cardId}><AccountIcon/> ID 098311</p>
           </div>
           <div className={styles.cardFooterBox}>
-            <SecurityIcon/>
-            <p className={styles.cardStatus}>Не проверено!</p>
+              <p className={styles.cardStatus}> <SecurityIcon/> Не проверено!</p>
           </div>
         </div>
       </div>

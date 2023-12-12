@@ -69,3 +69,15 @@ justify-content: center;
     border-radius: 15px;
     background: linear-gradient(270deg, #216efd 0%, #ff2142 100%);
 }
+
+.input {
+    padding: 20px;
+    margin: 13px 0;
+    background-color: #373B38;
+    width: 90%;
+    height: 62px;
+    border: none;
+    border-radius: 15px;
+    font-size: 23px;
+    color: #FFF;
+}

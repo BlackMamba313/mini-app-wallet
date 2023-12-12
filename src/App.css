@@ -22,7 +22,6 @@
 /*Вариант 3: Светлый и Приглушенный*/
 :root {
   --button-BColor:  linear-gradient(270deg, #216efd 0%, #ff2142 100%);
-;
   --button-color: #22b8cf;
   --button-border-color: #011305;
   --SButton-color: #e74c3c;
