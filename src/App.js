@@ -9,6 +9,12 @@ import SellPage from "./pages/SellPage";
 import SendPage from "./pages/SendPage";
 import CreatePage from "./pages/CreatePage";
 import HistoryPage from "./pages/HistoryPage";
+import { ApolloClient, InMemoryCache } from '@apollo/client';
+
+const client = new ApolloClient({
+  uri: process.env.REACT_APP_GRAPHQL_SERVER_URI, // Замените на актуальный URL вашего сервера GraphQL
+  cache: new InMemoryCache(),
+});
 
 function App() {
   const {tg} = useTelegram();
