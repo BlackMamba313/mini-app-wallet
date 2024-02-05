@@ -1,40 +1,40 @@
 import React from 'react';
 import styles from './Card.module.css';
-import { useQuery, gql } from '@apollo/client';
+// import { useQuery, gql } from '@apollo/client';
 import {useTelegram} from "../../hooks/useTelegram";
 import SecurityIcon from "../../assets/SecurityIcon";
 import AccountIcon from "../../assets/AccountIcon";
 
-const GET_USER_BY_ID = gql`
-  query GetUserById($userId: ID!) {
-    getUser(id: $userId) {
-      id
-      userName
-      // Другие поля пользователя, которые вам нужны
-    }
-  }
-`;
+// const GET_USER_BY_ID = gql`
+//   query GetUserById($userId: ID!) {
+//     getUser(id: $userId) {
+//       id
+//       userName
+//       // Другие поля пользователя, которые вам нужны
+//     }
+//   }
+// `;
 
 const Card = ({id, currency, walletNumber}) => {
   const {user} = useTelegram();
-  const {userId} = user;
 
-  const { loading, error, data } = useQuery(GET_USER_BY_ID, {
-    variables: { userId },
-  });
 
-  // Обработка состояний запроса
-  if (loading) {
-    return <p>Loading...</p>;
-  }
+  // const { loading, error, data } = useQuery(GET_USER_BY_ID, {
+  //   variables: { userId },
+  // });
+  //
+  // // Обработка состояний запроса
+  // if (loading) {
+  //   return <p>Loading...</p>;
+  // }
+  //
+  // if (error) {
+  //   return <p>Error: {error.message}</p>;
+  // }
+  //
+  // const userData = data.getUser;
 
-  if (error) {
-    return <p>Error: {error.message}</p>;
-  }
-
-  const userData = data.getUser;
-
-  console.log('user>>>>>>>>>>>>>>>.',userData)
+  console.log('user>>>>>>>>>>>>>>>.',user)
 
 
   return (
