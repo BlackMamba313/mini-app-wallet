@@ -5,34 +5,11 @@ import {useTelegram} from "../../hooks/useTelegram";
 import SecurityIcon from "../../assets/SecurityIcon";
 import AccountIcon from "../../assets/AccountIcon";
 
-const GET_USER_BY_ID = gql`
-  query GetUserById($userId: ID!) {
-    getUser(id: $userId) {
-      id
-      userName
-    }
-  }
-`;
+
 
 const Card = ({id, currency, walletNumber}) => {
   const { user } = useTelegram();
   const userId = user.id;
-
-  const { loading, error, data } = useQuery(GET_USER_BY_ID, {
-    variables: { userId },
-  });
-
-  // Обработка состояний запроса
-  useEffect(() => {
-    if (loading) {
-      console.log('Loading...');
-    } else if (error) {
-      console.error(`Error! ${error.message}`);
-    } else {
-      const userData = data.getUser;
-      console.log('user>>>>>>>>>>>>>>>.', userData);
-    }
-  }, [loading, error, data]);
 
   return (
     <div className={styles.wrapper}>
