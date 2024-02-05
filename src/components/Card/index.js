@@ -18,23 +18,21 @@ const Card = ({id, currency, walletNumber}) => {
   const {user} = useTelegram();
   const userId = user.id;
 
-  const { loading, error, data } = useQuery(GET_USER_BY_ID, {
-    variables: { userId },
-  });
 
-  // Обработка состояний запроса
-  if (loading) {
-    return <p>Loading...</p>;
+  const getUser = () => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const {loading, error, data} = useQuery(GET_USER_BY_ID, {
+      variables: {userId},
+    });
+
+    // Обработка состояний запроса
+    if (loading) return 'Loading...';
+    if (error) return `Error! ${error.message}`;
+
+    const userData = data.getUser;
+
+    console.log('user>>>>>>>>>>>>>>>.', userData)
   }
-
-  if (error) {
-    return <p>Error: {error.message}</p>;
-  }
-
-  const userData = data.getUser;
-
-  console.log('user>>>>>>>>>>>>>>>.',userData)
-
 
   return (
     <div className={styles.wrapper}>
@@ -46,7 +44,7 @@ const Card = ({id, currency, walletNumber}) => {
         <p className={styles.mainBalance}>100000</p>
         <p className={styles.subBalance}>542441.01₽</p>
         <p className={styles.walletNumber}>{walletNumber}</p>
-        <p className={styles.userName}>Ваше имя пользователя:
+        <p onClick={getUser} className={styles.userName}>Ваше имя пользователя:
           {user?.username}
         </p>
         <div className={styles.cardFooter}>
