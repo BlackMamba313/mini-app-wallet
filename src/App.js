@@ -19,6 +19,7 @@ import HistoryPage from "./pages/HistoryPage";
 function App() {
   const {tg} = useTelegram();
   useEffect(() => {
+
     tg.ready();
   }, [tg])
 
