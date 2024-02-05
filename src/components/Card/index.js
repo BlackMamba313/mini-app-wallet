@@ -1,6 +1,5 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import styles from './Card.module.css';
-import { useQuery, gql } from '@apollo/client';
 import {useTelegram} from "../../hooks/useTelegram";
 import SecurityIcon from "../../assets/SecurityIcon";
 import AccountIcon from "../../assets/AccountIcon";
@@ -9,7 +8,6 @@ import AccountIcon from "../../assets/AccountIcon";
 
 const Card = ({id, currency, walletNumber}) => {
   const { user } = useTelegram();
-  const userId = user.id;
 
   return (
     <div className={styles.wrapper}>
