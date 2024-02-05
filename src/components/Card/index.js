@@ -10,7 +10,6 @@ const GET_USER_BY_ID = gql`
     getUser(id: $userId) {
       id
       userName
-      // Другие поля пользователя, которые вам нужны
     }
   }
 `;
