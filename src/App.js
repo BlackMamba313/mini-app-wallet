@@ -18,7 +18,7 @@ const client = new ApolloClient({
 
 function App() {
   const {tg} = useTelegram();
-
+  console.log(client)
   useEffect(() => {
     tg.ready();
   }, [tg])
