@@ -17,7 +17,7 @@ const GET_USER_BY_ID = gql`
 
 const Card = ({id, currency, walletNumber}) => {
   const {user} = useTelegram();
-  const {userId} = user;
+  const userId = user.id;
 
   const { loading, error, data } = useQuery(GET_USER_BY_ID, {
     variables: { userId },
