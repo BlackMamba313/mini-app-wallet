@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styles from './Card.module.css';
 import { useQuery, gql } from '@apollo/client';
 import {useTelegram} from "../../hooks/useTelegram";
@@ -15,24 +15,24 @@ const GET_USER_BY_ID = gql`
 `;
 
 const Card = ({id, currency, walletNumber}) => {
-  const {user} = useTelegram();
+  const { user } = useTelegram();
   const userId = user.id;
 
+  const { loading, error, data } = useQuery(GET_USER_BY_ID, {
+    variables: { userId },
+  });
 
-  const getUser = () => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const {loading, error, data} = useQuery(GET_USER_BY_ID, {
-      variables: {userId},
-    });
-
-    // Обработка состояний запроса
-    if (loading) return 'Loading...';
-    if (error) return `Error! ${error.message}`;
-
-    const userData = data.getUser;
-
-    console.log('user>>>>>>>>>>>>>>>.', userData)
-  }
+  // Обработка состояний запроса
+  useEffect(() => {
+    if (loading) {
+      console.log('Loading...');
+    } else if (error) {
+      console.error(`Error! ${error.message}`);
+    } else {
+      const userData = data.getUser;
+      console.log('user>>>>>>>>>>>>>>>.', userData);
+    }
+  }, [loading, error, data]);
 
   return (
     <div className={styles.wrapper}>
@@ -44,7 +44,7 @@ const Card = ({id, currency, walletNumber}) => {
         <p className={styles.mainBalance}>100000</p>
         <p className={styles.subBalance}>542441.01₽</p>
         <p className={styles.walletNumber}>{walletNumber}</p>
-        <p onClick={getUser} className={styles.userName}>Ваше имя пользователя:
+        <p className={styles.userName}>Ваше имя пользователя:
           {user?.username}
         </p>
         <div className={styles.cardFooter}>
