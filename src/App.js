@@ -9,16 +9,15 @@ import SellPage from "./pages/SellPage";
 import SendPage from "./pages/SendPage";
 import CreatePage from "./pages/CreatePage";
 import HistoryPage from "./pages/HistoryPage";
-import { ApolloClient, InMemoryCache } from '@apollo/client';
-
-const client = new ApolloClient({
-  uri: 'https://likepaywallet-e9c7714eec1c.herokuapp.com/graphql', // Замените на актуальный URL вашего сервера GraphQL
-  cache: new InMemoryCache(),
-});
+// import { ApolloClient, InMemoryCache } from '@apollo/client';
+//
+// const client = new ApolloClient({
+//   uri: 'https://likepaywallet-e9c7714eec1c.herokuapp.com/graphql', // Замените на актуальный URL вашего сервера GraphQL
+//   cache: new InMemoryCache(),
+// });
 
 function App() {
   const {tg} = useTelegram();
-  console.log(client)
   useEffect(() => {
     tg.ready();
   }, [tg])
