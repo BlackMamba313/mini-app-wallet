@@ -7,29 +7,29 @@ const ControlButtons = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.buttonWrapper}>
-        <div onClick={() => navigate(`/receive`)} className={`${styles.buttonHalf} ${styles.button}`}>
+        <div onClick={() => navigate(`/receive`)} className={styles.button}>
           <div className={styles.buttonBg}>
-            Получить
+            Пол
           </div>
         </div>
-        <div onClick={() => navigate(`/buy`)} className={`${styles.buttonHalf} ${styles.button}`}>
+        {/*<div onClick={() => navigate(`/buy`)} className={`${styles.buttonHalf} ${styles.button}`}>*/}
+        {/*  <div className={styles.buttonBg}>*/}
+        {/*    Купить*/}
+        {/*  </div>*/}
+        {/*</div>*/}
+        <div onClick={() => navigate(`/send`)} className={styles.button}>
           <div className={styles.buttonBg}>
-            Купить
+            Отпр
           </div>
         </div>
-        <div onClick={() => navigate(`/send`)} className={`${styles.buttonHalf} ${styles.button}`}>
-          <div className={styles.buttonBg}>
-            Отправить
-          </div>
-        </div>
-        <div onClick={() => navigate(`/sell`)} className={`${styles.buttonHalf} ${styles.button}`}>
-          <div className={styles.buttonBg}>
-            Продать
-          </div>
-        </div>
+        {/*<div onClick={() => navigate(`/sell`)} className={`${styles.buttonHalf} ${styles.button}`}>*/}
+        {/*  <div className={styles.buttonBg}>*/}
+        {/*    Продать*/}
+        {/*  </div>*/}
+        {/*</div>*/}
         <div onClick={() => navigate(`/history`)} className={styles.button}>
           <div className={styles.buttonBg}>
-            Партнерские платежи
+            Партн
           </div>
         </div>
         {/*<div onClick={() => navigate(`/create`)} className={styles.button}>*/}
@@ -39,7 +39,7 @@ const ControlButtons = () => {
         {/*</div>*/}
         <div onClick={() => navigate(`/history`)} className={styles.button}>
           <div className={styles.buttonBg}>
-            Сделки
+            Сдел
           </div>
         </div>
       </div>

@@ -2,27 +2,21 @@ import React from 'react';
 import Header from "../components/Header";
 import ControlButtons from "../components/ControlButtons";
 import CardsSlider from "../components/CardsSlider";
-import {GET_USER_BY_ID} from "../store/queries/userQueries";
-import {useQuery} from "@apollo/client";
 import {useTelegram} from "../hooks/useTelegram";
 
 const MainPage = () => {
-  const {user} = useTelegram();
-  const userId = user.id;
-  const {loading, error, data} = useQuery(GET_USER_BY_ID, {variables: {userId}});
+  const {tg} = useTelegram();
 
-  if (loading) return <p>LOADING...</p>;
-  if (error) return <p>Something Went Wrong</p>;
-
+  console.log('>>>>>>>>>>>', tg)
   return (
     <>
-      {!loading && !error && (
+      {/*{!loading && !error && (*/}
         <>
           <Header/>
-          <CardsSlider data={data}/>
+          <CardsSlider />
           <ControlButtons/>
         </>
-      )}
+      {/*)}*/}
     </>
   );
 };
