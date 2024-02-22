@@ -8,12 +8,14 @@ import CryptoJS from 'crypto-js';
 const MainPage = () => {
   const { initData, initDataUnsafe} = useTelegram();
 
-
+  const secretKey = "6786196747:AAFqhLcBqjkfV82d0jZXr-HI7OmPL4R7h3w";
 
   const receivedHash = initDataUnsafe.hash
 
 // Хеширование данных с использованием SHA-256
-  const hash = CryptoJS.SHA256(initData).toString();
+  const hash = CryptoJS.HmacSHA256(initData, secretKey).toString();
+
+
 
   console.log('>>>>>>>>>>>receivedHash', receivedHash)
   console.log('>>>>>>>>>>>hash', hash)
