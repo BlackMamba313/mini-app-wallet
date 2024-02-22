@@ -9,12 +9,18 @@ import SellPage from "./pages/SellPage";
 import SendPage from "./pages/SendPage";
 import CreatePage from "./pages/CreatePage";
 import HistoryPage from "./pages/HistoryPage";
+// import {useDispatch} from "react-redux";
 
 function App() {
+  // const dispatch = useDispatch();
   const {tg} = useTelegram();
   useEffect(() => {
     tg.ready();
   }, [tg])
+
+  // useEffect(() => {
+  //   dispatch(auth());
+  // }, []);
 
   return (
     <div className="App">

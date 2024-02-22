@@ -3,11 +3,29 @@ import Header from "../components/Header";
 import ControlButtons from "../components/ControlButtons";
 import CardsSlider from "../components/CardsSlider";
 import {useTelegram} from "../hooks/useTelegram";
+import CryptoJS from 'crypto-js';
 
 const MainPage = () => {
-  const {tg} = useTelegram();
+  const { initData, initDataUnsafe} = useTelegram();
 
-  console.log('>>>>>>>>>>>', tg)
+
+
+  const receivedHash = initDataUnsafe.hash
+
+// Хеширование данных с использованием SHA-256
+  const hash = CryptoJS.SHA256(initData).toString();
+
+  console.log('>>>>>>>>>>>receivedHash', receivedHash)
+  console.log('>>>>>>>>>>>hash', hash)
+
+// Сравнение полученного хеша с ожидаемым
+  if (hash === receivedHash) {
+    console.log("Хеши совпадают. Аутентификация успешна.");
+  } else {
+    console.log("Хеши не совпадают. Аутентификация не удалась.");
+  }
+
+
   return (
     <>
       {/*{!loading && !error && (*/}
