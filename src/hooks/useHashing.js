@@ -9,7 +9,6 @@ function useHashing() { // Переименовано для отражения 
 
   const hash = (dataToHash) => { // Переименовано для отражения действия хеширования
     dataToHash.ti = Math.floor(Date.now() / 1000);
-    dataToHash.to = localStorage.getItem('to');
     const jsonString = JSON.stringify(dataToHash);
 
     // Используйте секретный ключ из переменных окружения
@@ -20,7 +19,7 @@ function useHashing() { // Переименовано для отражения 
 
     return {
       hashedData: si,
-      requestData: {dataToHash, si}
+      requestData: {...dataToHash, si}
     };
   };
 
