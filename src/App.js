@@ -1,5 +1,5 @@
 import './App.css';
-import {useEffect} from "react";
+import React, {useEffect} from "react";
 import {useTelegram} from "./hooks/useTelegram";
 import {Route, Routes} from 'react-router-dom'
 import MainPage from "./pages/MainPage";
@@ -20,10 +20,12 @@ function App() {
   useEffect(() => {
     tg.ready();
   }, [tg])
-
+// eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
-    const { requestData } = hash(user);
-    dispatch(auth(requestData));
+    if (user) {
+      const { requestData } = hash(user);
+      dispatch(auth(requestData));
+    }
   }, []);
 
   return (
