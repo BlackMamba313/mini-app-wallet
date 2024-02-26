@@ -26,7 +26,7 @@ function App() {
       const { requestData } = hash(user);
       dispatch(auth(requestData));
     }
-  }, []);
+  }, [user]);
 
   return (
     <div className="App">
