@@ -15,7 +15,7 @@ const CardsSlider = () => {
     setCurrentIndex(index);
   };
   return (
-    <SwipeableViews style={{ width: '80%'}} index={currentIndex} onChangeIndex={handleChangeIndex}>
+    <SwipeableViews index={currentIndex} onChangeIndex={handleChangeIndex}>
       {cardData.map((card) => (
         <Card id={card.id} currency={card.currency} walletNumber={card.walletNumber}/>
       ))}

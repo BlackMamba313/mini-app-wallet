@@ -1,46 +1,27 @@
 import React from 'react';
 import styles from './ControlButtons.module.css';
 import {useNavigate} from "react-router-dom";
+import PartnersIcon from "../../assets/icons/PartnersIcon";
+import P2pIcon from "../../assets/icons/P2pIcon";
+import SendIcon from "../../assets/icons/SendIcon";
+import ReseiveIcon from "../../assets/icons/ReseiveIcon";
 
 const ControlButtons = () => {
   const navigate = useNavigate();
   return (
     <div className={styles.wrapper}>
       <div className={styles.buttonWrapper}>
-        <div onClick={() => navigate(`/receive`)} className={styles.button}>
-          <div className={styles.buttonBg}>
-            Пол
-          </div>
+        <div onClick={() => navigate(`/receive`)} style={{ marginTop: 7 }}>
+          <ReseiveIcon width={42} height={42} />
         </div>
-        {/*<div onClick={() => navigate(`/buy`)} className={`${styles.buttonHalf} ${styles.button}`}>*/}
-        {/*  <div className={styles.buttonBg}>*/}
-        {/*    Купить*/}
-        {/*  </div>*/}
-        {/*</div>*/}
-        <div onClick={() => navigate(`/send`)} className={styles.button}>
-          <div className={styles.buttonBg}>
-            Отпр
-          </div>
+        <div onClick={() => navigate(`/send`)} style={{ marginTop: 7 }}>
+          <SendIcon width={42} height={42}/>
         </div>
-        {/*<div onClick={() => navigate(`/sell`)} className={`${styles.buttonHalf} ${styles.button}`}>*/}
-        {/*  <div className={styles.buttonBg}>*/}
-        {/*    Продать*/}
-        {/*  </div>*/}
-        {/*</div>*/}
-        <div onClick={() => navigate(`/history`)} className={styles.button}>
-          <div className={styles.buttonBg}>
-            Партн
-          </div>
+        <div onClick={() => navigate(`/history`)} >
+          <P2pIcon width={57} height={57}/>
         </div>
-        {/*<div onClick={() => navigate(`/create`)} className={styles.button}>*/}
-        {/*  <div className={styles.buttonBg}>*/}
-        {/*    Создать сделку*/}
-        {/*  </div>*/}
-        {/*</div>*/}
-        <div onClick={() => navigate(`/history`)} className={styles.button}>
-          <div className={styles.buttonBg}>
-            Сдел
-          </div>
+        <div onClick={() => navigate(`/history`)} style={{ marginTop: 13 }}>
+          <PartnersIcon width={32} height={32} />
         </div>
       </div>
     </div>
