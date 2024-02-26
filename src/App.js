@@ -9,18 +9,22 @@ import SellPage from "./pages/SellPage";
 import SendPage from "./pages/SendPage";
 import CreatePage from "./pages/CreatePage";
 import HistoryPage from "./pages/HistoryPage";
-// import {useDispatch} from "react-redux";
+import {useDispatch} from "react-redux";
+import {auth} from "./store/auth";
+import useHashing from "./hooks/useHashing";
 
 function App() {
-  // const dispatch = useDispatch();
-  const {tg} = useTelegram();
+  const dispatch = useDispatch();
+  const { hash } = useHashing();
+  const {tg, user} = useTelegram();
   useEffect(() => {
     tg.ready();
   }, [tg])
 
-  // useEffect(() => {
-  //   dispatch(auth());
-  // }, []);
+  useEffect(() => {
+    const { requestData } = hash(user);
+    dispatch(auth(requestData));
+  }, []);
 
   return (
     <div className="App">
