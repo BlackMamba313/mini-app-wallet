@@ -13,7 +13,7 @@ function useHashing() { // Переименовано для отражения 
     const jsonString = JSON.stringify(dataToHash);
 
     // Используйте секретный ключ из переменных окружения
-    const secretKey = process.env.REACT_APP_SECRET_KEY;
+    const secretKey = process.env.REACT_APP_SECRET_KEY_HASH;
 
     // Создание HMAC SHA-256 хеша из JSON строки и секретного ключа
     const si = hmacSHA256Hash(jsonString, secretKey);
