@@ -1,25 +1,36 @@
 import CryptoJS from 'crypto-js';
 
-function useHashing() { // Переименовано для отражения использования хеширования
-                        // Функция для создания HMAC SHA-256
-  const hmacSHA256Hash = (jsonString, secretKey) => { // Ясно указывает на хеширование
-    const hash = CryptoJS.HmacSHA256(jsonString, secretKey);
+function useHashing() {
+  // Функция для создания HMAC SHA-256 хеша
+  const hmacSHA256Hash = (dataString, secretKey) => {
+    const hash = CryptoJS.HmacSHA256(dataString, secretKey);
     return hash.toString(CryptoJS.enc.Hex);
   };
 
-  const hash = (dataToHash) => { // Переименовано для отражения действия хеширования
-    dataToHash.ti = Math.floor(Date.now() / 1000);
-    const jsonString = JSON.stringify(dataToHash);
+  // Функция для создания отсортированной строки из объекта данных
+  const createSortedDataString = (dataToHash) => {
+    dataToHash.ti = Math.floor(Date.now() / 1000); // Добавляем временную метку
 
-    // Используйте секретный ключ из переменных окружения
+    // Сортируем ключи и создаем строку в формате 'ключ=значение', разделенную переносами строк
+    const sortedKeys = Object.keys(dataToHash).sort();
+    return sortedKeys.map(key => `${key}=${dataToHash[key]}`).join('\n');
+  };
+
+  // Функция хеширования данных
+  const hash = (dataToHash) => {
+    // Создаем отсортированную строку из данных
+    const dataString = createSortedDataString(dataToHash);
+
+    // Используем секретный ключ из переменных окружения
     const secretKey = process.env.REACT_APP_SECRET_KEY_HASH;
 
-    // Создание HMAC SHA-256 хеша из JSON строки и секретного ключа
-    const si = hmacSHA256Hash(jsonString, secretKey);
+    // Создаем HMAC SHA-256 хеш отсортированной строки и секретного ключа
+    const si = hmacSHA256Hash(dataString, secretKey);
 
+    // Возвращаем хеш и исходные данные с добавленной подписью
     return {
       hashedData: si,
-      requestData: {...dataToHash, si}
+      requestData: { ...dataToHash, si }
     };
   };
 
