@@ -15,6 +15,7 @@ function useHashing() {
     // Сортируем ключи и создаем строку в формате 'ключ=значение', разделенную переносами строк
     const sortedKeys = Object.keys(dataToHash).sort();
     const dataString = sortedKeys.map(key => `${key}=${dataToHash[key]}`).join('\n');
+    console.log('dataString', dataString)
 
     return dataString;
   };
