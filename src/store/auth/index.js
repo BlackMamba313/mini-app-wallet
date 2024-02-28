@@ -51,7 +51,7 @@ const authSlice = createSlice({
     builder.addCase(auth.rejected, (state, action) => {
       state.loaders.common = false; // Останавливаем индикатор загрузки
       state.error = action.error.message;
-      console.log('message', action.error.message)
+      console.log('message', action)
       state.isLoggedIn = false; // Устанавливаем статус неавторизованного пользователя
       state.onSuccess = false; // Указываем, что операция не была успешной
     });
