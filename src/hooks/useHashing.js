@@ -3,19 +3,28 @@ import CryptoJS from 'crypto-js';
 function useHashing() {
   // Функция для создания HMAC SHA-256 хеша
   const hmacSHA256Hash = (dataString, secretKey) => {
-    const hash = CryptoJS.HmacSHA256(dataString, secretKey);
+    // Преобразование секретного ключа из строки в WordArray, если необходимо
+    const keyWordArray = CryptoJS.enc.Utf8.parse(secretKey);
+    const hash = CryptoJS.HmacSHA256(dataString, keyWordArray);
     return hash.toString(CryptoJS.enc.Hex);
   };
 
   // Функция для создания отсортированной строки из объекта данных
   const createSortedDataString = (dataToHash) => {
+    // Преобразование логических значений в 1
+    Object.keys(dataToHash).forEach(key => {
+      if (typeof dataToHash[key] === 'boolean') {
+        dataToHash[key] = dataToHash[key] ? 1 : 0;
+      }
+    });
+
     // Добавляем временную метку
     dataToHash.ti = Math.floor(Date.now() / 1000);
 
     // Сортируем ключи и создаем строку в формате 'ключ=значение', разделенную переносами строк
     const sortedKeys = Object.keys(dataToHash).sort();
     const dataString = sortedKeys.map(key => `${key}=${dataToHash[key]}`).join('\n');
-    console.log('dataString', dataString)
+    console.log('Sorted data string for hashing:', dataString);
 
     return dataString;
   };
@@ -42,3 +51,4 @@ function useHashing() {
 }
 
 export default useHashing;
+
