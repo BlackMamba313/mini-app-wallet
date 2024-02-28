@@ -1,10 +1,9 @@
 import CryptoJS from 'crypto-js';
 
 function useHashing() {
-  const hmacSHA256Hash = (dataString, secretKeyHex) => {
-    const secretKey = CryptoJS.enc.Hex.parse(secretKeyHex);
-    console.log(secretKey)
-    const hash = CryptoJS.HmacSHA256(dataString, secretKey);
+  const hmacSHA256Hash = (dataString, secretKey) => {
+    const hash = CryptoJS.HmacSHA256(dataString,"|", secretKey);
+    console.log('hashing:', dataString, secretKey);
     return hash.toString(CryptoJS.enc.Hex);
   };
 
@@ -25,12 +24,12 @@ function useHashing() {
 
   const hash = (dataToHash) => {
     const dataString = createSortedDataString(dataToHash);
-    const secretKeyHex = process.env.REACT_APP_SECRET_KEY_HASH;
+    const secretKey = process.env.REACT_APP_SECRET_KEY_HASH;
 
-    const si = hmacSHA256Hash(dataString, secretKeyHex);
+    const si = hmacSHA256Hash(dataString, secretKey);
 
     return {
-      requestData: { ...dataToHash, si }
+      requestData: { ...dataToHash, si, dataString }
     };
   };
 
