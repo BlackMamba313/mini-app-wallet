@@ -41,6 +41,7 @@ const authSlice = createSlice({
       state.loaders.common = true;
     });
     builder.addCase(auth.fulfilled, (state, {payload}) => {
+      console.log('dataString', payload.msg)
       state.user = payload;
       state.isLoggedIn = true
       state.onSuccess = true;
