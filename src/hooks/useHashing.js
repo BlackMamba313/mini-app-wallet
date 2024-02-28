@@ -2,7 +2,7 @@ import CryptoJS from 'crypto-js';
 
 function useHashing() {
   const hmacSHA256Hash = (dataString, secretKey) => {
-    const hash = CryptoJS.HmacSHA256(dataString,"|", secretKey);
+    const hash = CryptoJS.HmacSHA256(dataString, secretKey);
     console.log('hashing:', dataString, secretKey);
     return hash.toString(CryptoJS.enc.Hex);
   };
