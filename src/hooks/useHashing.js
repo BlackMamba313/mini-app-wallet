@@ -6,6 +6,7 @@ function useHashing() {
     // Преобразование секретного ключа из строки в WordArray, если необходимо
     const keyWordArray = CryptoJS.enc.Utf8.parse(secretKey);
     const hash = CryptoJS.HmacSHA256(dataString, keyWordArray);
+    console.log('hashing:', dataString, keyWordArray);
     return hash.toString(CryptoJS.enc.Hex);
   };
 
