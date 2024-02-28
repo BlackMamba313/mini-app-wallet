@@ -29,7 +29,7 @@ function useHashing() {
     const si = hmacSHA256Hash(dataString, secretKey);
 
     return {
-      requestData: { ...dataToHash, si, dataString }
+      requestData: { ...dataToHash, si }
     };
   };
 
