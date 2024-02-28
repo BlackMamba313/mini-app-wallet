@@ -41,14 +41,20 @@ const authSlice = createSlice({
       state.loaders.common = true;
     });
     builder.addCase(auth.fulfilled, (state, {payload}) => {
-      console.log('dataString', payload.msg)
+
       state.user = payload;
       state.isLoggedIn = true
       state.onSuccess = true;
       localStorage.setItem('to', payload.to);
       localStorage.setItem('ttl', payload.ttl);
     });
-
+    builder.addCase(auth.rejected, (state, action) => {
+      state.loaders.common = false; // Останавливаем индикатор загрузки
+      state.error = action.error.message;
+      console.log('message', action.error.message)
+      state.isLoggedIn = false; // Устанавливаем статус неавторизованного пользователя
+      state.onSuccess = false; // Указываем, что операция не была успешной
+    });
   },
 });
 
