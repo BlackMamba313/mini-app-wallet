@@ -11,20 +11,19 @@ function useHashing() {
 
   // Функция для создания отсортированной строки из объекта данных
   const createSortedDataString = (dataToHash) => {
-    // Преобразование логических значений в 1 и исключение пустых или false значений
-    const filteredDataToHash = Object.entries(dataToHash).reduce((acc, [key, value]) => {
-      if (value || typeof value === 'number' || value === 0) {
-        acc[key] = typeof value === 'boolean' ? 1 : value;
+    // Преобразование логических значений в 1
+    Object.keys(dataToHash).forEach(key => {
+      if (typeof dataToHash[key] === 'boolean') {
+        dataToHash[key] = dataToHash[key] ? 1 : 0;
       }
-      return acc;
-    }, {});
+    });
 
     // Добавляем временную метку
-    filteredDataToHash.ti = Math.floor(Date.now() / 1000);
+    dataToHash.ti = Math.floor(Date.now() / 1000);
 
     // Сортируем ключи и создаем строку в формате 'ключ=значение', разделенную переносами строк
-    const sortedKeys = Object.keys(filteredDataToHash).sort();
-    const dataString = sortedKeys.map(key => `${key}=${filteredDataToHash[key]}`).join('\n');
+    const sortedKeys = Object.keys(dataToHash).sort();
+    const dataString = sortedKeys.map(key => `${key}=${dataToHash[key]}`).join('\n');
     console.log('Sorted data string for hashing:', dataString);
 
     return dataString;
@@ -52,5 +51,6 @@ function useHashing() {
 }
 
 export default useHashing;
+
 
 
