@@ -4,7 +4,7 @@ function useHashing() {
   // Функция для создания HMAC SHA-256 хеша
   const hmacSHA256Hash = (dataString, secretKey) => {
     // Преобразование секретного ключа из строки в WordArray, если необходимо
-    const hash = CryptoJS.HmacSHA256(dataString, secretKey);
+    const hash = CryptoJS.HmacSHA256(dataString,"|", secretKey);
     console.log('hashing:', dataString, secretKey);
     return hash.toString(CryptoJS.enc.Hex);
   };
