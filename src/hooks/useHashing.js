@@ -9,11 +9,14 @@ function useHashing() {
 
   // Функция для создания отсортированной строки из объекта данных
   const createSortedDataString = (dataToHash) => {
-    dataToHash.ti = Math.floor(Date.now() / 1000); // Добавляем временную метку
+    // Добавляем временную метку
+    dataToHash.ti = Math.floor(Date.now() / 1000);
 
     // Сортируем ключи и создаем строку в формате 'ключ=значение', разделенную переносами строк
     const sortedKeys = Object.keys(dataToHash).sort();
-    return sortedKeys.map(key => `${key}=${dataToHash[key]}`).join('\n');
+    const dataString = sortedKeys.map(key => `${key}=${dataToHash[key]}`).join('\n');
+
+    return dataString;
   };
 
   // Функция хеширования данных
