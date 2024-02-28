@@ -1,48 +1,42 @@
 import CryptoJS from 'crypto-js';
 
 function useHashing() {
-  // Функция для создания HMAC SHA-256 хеша
   const hmacSHA256Hash = (dataString, secretKeyHex) => {
-    // Преобразование шестнадцатеричного представления секретного ключа в WordArray для CryptoJS
     const secretKey = CryptoJS.enc.Hex.parse(secretKeyHex);
     const hash = CryptoJS.HmacSHA256(dataString, secretKey);
     return hash.toString(CryptoJS.enc.Hex);
   };
 
-  // Функция для создания отсортированной строки из объекта данных
   const createSortedDataString = (dataToHash) => {
-    // Преобразование и исключение несущественных значений
-    const filteredDataToHash = Object.entries(dataToHash).reduce((acc, [key, value]) => {
-      if (value || typeof value === 'number' || value === 0) {
-        acc[key] = typeof value === 'boolean' ? 1 : value;
+    // Преобразование логических значений в 1
+    Object.keys(dataToHash).forEach(key => {
+      if (typeof dataToHash[key] === 'boolean') {
+        dataToHash[key] = dataToHash[key] ? 1 : 0;
       }
-      return acc;
-    }, {});
+    });
+    dataToHash.ti = Math.floor(Date.now() / 1000);
+    const sortedKeys = Object.keys(dataToHash).sort();
+    const dataString = sortedKeys.map(key => `${key}=${dataToHash[key]}`).join('\n');
+    console.log('Sorted data string for hashing:', dataString);
 
-    filteredDataToHash.ti = Math.floor(Date.now() / 1000); // Добавляем временную метку
-
-    const sortedKeys = Object.keys(filteredDataToHash).sort();
-    return sortedKeys.map(key => `${key}=${filteredDataToHash[key]}`).join('\n');
+    return dataString;
   };
 
-  // Функция хеширования данных
   const hash = (dataToHash) => {
     const dataString = createSortedDataString(dataToHash);
-    const secretKeyHex = process.env.REACT_APP_SECRET_KEY_HASH; // Получаем ключ в виде шестнадцатеричной строки
+    const secretKeyHex = process.env.REACT_APP_SECRET_KEY_HASH;
 
-    const si = hmacSHA256Hash(dataString, secretKeyHex); // Генерируем подпись
+    const si = hmacSHA256Hash(dataString, secretKeyHex);
 
     return {
-      hashedData: si,
-      requestData: { ...dataToHash, si: si }
+      requestData: { ...dataToHash, si }
     };
   };
 
-  return { hash }; // Возвращаем объект с функцией hash
+  return { hash };
 }
 
 export default useHashing;
-
 
 
 
