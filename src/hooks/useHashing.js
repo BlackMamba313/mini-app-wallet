@@ -16,7 +16,7 @@ function useHashing() {
     });
     dataToHash.ti = Math.floor(Date.now() / 1000);
     const sortedKeys = Object.keys(dataToHash).sort();
-    const dataString = sortedKeys.map(key => `${key}=${dataToHash[key]}`).join('0x0A');
+    const dataString = sortedKeys.map(key => `${key}=${dataToHash[key]}`).join("\n");
     console.log('Sorted data string for hashing:', dataString);
 
     return dataString;
