@@ -23,6 +23,7 @@ export const refreshToken = createAsyncThunk(
 const initialState = {
   user: {
     currentFiat: 'RUB',
+    wallets: []
   },
   isAuthenticated: false,
   isLoggedIn: false,

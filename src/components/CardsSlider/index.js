@@ -5,7 +5,7 @@ import {useSelector} from "react-redux";
 import {userData} from "../../store/auth/selectors";
 
 const CardsSlider = () => {
-  const user  = useSelector(userData);
+  const user = useSelector(userData);
   const cardData = user?.wallets.flatMap(wallet =>
     wallet.balances.map(balance => ({
       network: wallet.network,
