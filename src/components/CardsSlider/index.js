@@ -6,7 +6,7 @@ import {userData} from "../../store/auth/selectors";
 
 const CardsSlider = () => {
   const {wallets} = useSelector(userData);
-  const cardData = wallets.flatMap(wallet =>
+  const cardData = wallets.map(wallet =>
     wallet.balances.map(balance => ({
       network: wallet.network,
       address: wallet.address,
