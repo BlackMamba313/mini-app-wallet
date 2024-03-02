@@ -7,15 +7,13 @@ import {userData} from "../store/auth/selectors";
 
 
 const MainPage = () => {
-  const {wallets} = useSelector(userData);
 
   return (
     <>
       {/*{!loading && !error && (*/}
         <>
           <Header/>
-          {wallets &&
-            <CardsSlider/>}
+          <CardsSlider/>
           <ControlButtons/>
         </>
       {/*)}*/}
