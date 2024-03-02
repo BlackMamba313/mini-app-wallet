@@ -21,7 +21,9 @@ export const refreshToken = createAsyncThunk(
 );
 
 const initialState = {
-  user: null,
+  user: {
+    currentFiat: 'RUB',
+  },
   isAuthenticated: false,
   isLoggedIn: false,
   onSuccess: null,
@@ -41,7 +43,6 @@ const authSlice = createSlice({
       state.loaders.common = true;
     });
     builder.addCase(auth.fulfilled, (state, {payload}) => {
-
       state.user = payload;
       state.isLoggedIn = true
       state.onSuccess = true;
@@ -52,8 +53,6 @@ const authSlice = createSlice({
       state.loaders.common = false; // Останавливаем индикатор загрузки
       state.error = action.error.message;
       console.log('message', action.meta.arg)
-      state.isLoggedIn = false; // Устанавливаем статус неавторизованного пользователя
-      state.onSuccess = false; // Указываем, что операция не была успешной
     });
   },
 });

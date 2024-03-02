@@ -1,13 +1,21 @@
 import React from 'react';
 import SwipeableViews from 'react-swipeable-views';
 import Card from "../Card";
+import {useSelector} from "react-redux";
+import {userData} from "../../store/auth/selectors";
 
 const CardsSlider = () => {
-  const cardData = [
-    { id: '098311', currency: 'BTC/RUB', walletNumber: '0x22aBb2d0e8A52eF99B8C095EFdC709176574AA82' },
-    { id: '093641', currency: 'TOR/RUB', walletNumber: '0x22aBb2d0e8A52eF99B8C095EFdC709176574AA82' },
-    { id: '074859', currency: 'DOG/RUB', walletNumber: '0x22aBb2d0e8A52eF99B8C095EFdC709176574AA82' },
-  ];
+  const {wallets} = useSelector(userData);
+  const cardData = wallets.flatMap(wallet =>
+    wallet.balances.map(balance => ({
+      network: wallet.network,
+      address: wallet.address,
+      token: balance.token,
+      balance: balance.balance,
+    }))
+  );
+
+
 
   const [currentIndex, setCurrentIndex] = React.useState(0);
 
@@ -17,7 +25,7 @@ const CardsSlider = () => {
   return (
     <SwipeableViews index={currentIndex} onChangeIndex={handleChangeIndex}>
       {cardData.map((card) => (
-        <Card id={card.id} currency={card.currency} walletNumber={card.walletNumber}/>
+        <Card network={card.network} address={card.address} token={card.token} balance={card.balance}/>
       ))}
     </SwipeableViews>
   );

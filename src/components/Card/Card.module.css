@@ -57,6 +57,7 @@
     justify-content: space-between;
     align-items: baseline;
     gap: 20px;
+    z-index: 3;
 }
 
 .cardFooterBox {
@@ -64,12 +65,14 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+    z-index: 3;
 }
 
 .cardId {
     margin-bottom: -2px;
     font-size: 23px;
     font-weight: 700;
+    z-index: 3;
 }
 
 .cardStatus {
@@ -77,4 +80,16 @@
     color: rgba(239, 0, 74, 0.90);
     font-size: 16px;
     font-weight: 700;
+}
+
+.network {
+    position: absolute;
+    z-index: 1;
+    right : 10px;
+    bottom: -20px;
+    font-size: 90px;
+    background-image: linear-gradient(to right, rgba(136, 136, 135, 0.2), rgba(255, 215, 0, 0.8));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
