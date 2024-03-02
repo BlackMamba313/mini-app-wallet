@@ -14,7 +14,7 @@ const CardsSlider = () => {
       balance: balance.balance,
     }))
   );
-
+  console.log(cardData)
 
 
   const [currentIndex, setCurrentIndex] = React.useState(0);
