@@ -12,7 +12,7 @@ const Card = ({network, address, token, balance}) => {
   const user = useSelector(userData);
   const fiat = useSelector(userFiat);
 
-  const cardAnimationStyle = !user ? {filter: 'blur(0px)'} : {filter: 'blur(4px)'};
+  const cardAnimationStyle = user ? {filter: 'blur(0px)'} : {filter: 'blur(4px)'};
 
   return (
     <div className={styles.wrapper}>
