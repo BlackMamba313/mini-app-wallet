@@ -11,6 +11,7 @@
     height: 200px;
     border-radius: 25px;
     background: var(--button-BColor);
+    overflow: hidden;
 }
 
 .cardHeader {
@@ -86,7 +87,7 @@
     position: absolute;
     z-index: 1;
     right : 10px;
-    bottom: -20px;
+    bottom: -25px;
     font-size: 90px;
     background-image: linear-gradient(to right, rgba(136, 136, 135, 0.2), rgba(255, 215, 0, 0.8));
     -webkit-background-clip: text;

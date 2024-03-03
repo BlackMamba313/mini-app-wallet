@@ -24,10 +24,10 @@ const initialState = {
   user: null,
   wallets: [
     {
-      network: 'TEST',
-      address: 'TEST',
-      token: 'TEST',
-      balance: 'TEST',
+      network: 'TRON',
+      address: 'TRON',
+      token: 'TRON',
+      balance: 'TRON',
     }
   ],
   isAuthenticated: false,

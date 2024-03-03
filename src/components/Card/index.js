@@ -21,7 +21,6 @@ const Card = ({network, address, token, balance}) => {
           animate={cardAnimationStyle}
           transition={{ duration: 0.5 }}
           className={styles.card}>
-          <div className={styles.network}>{network}</div>
           <div className={styles.cardHeader}>
             <p className={styles.cardTitle}>Ваш баланс</p>
             <p className={styles.currency}>{token}/{fiat}</p>
@@ -45,7 +44,9 @@ const Card = ({network, address, token, balance}) => {
             </div>
             <div className={styles.cardFooterBox}>
               <p className={styles.cardStatus}><SecurityIcon/> Не проверено!</p>
+
             </div>
+            <div className={styles.network}>{network}</div>
           </div>
       </motion.div>
     </div>
