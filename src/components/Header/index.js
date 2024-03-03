@@ -14,7 +14,7 @@ const Header = ({title}) => {
   const rate = useSelector(currentRate)
   useEffect(() => {
     setUpdate( !update); // Принудительное обновление компонента при изменении activeWallet
-  }, [activeWallet]);
+  }, [activeWallet, update]);
   console.log(update)
   return (
     <div>
