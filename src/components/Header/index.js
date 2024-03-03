@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styles from './Header.module.css';
 import ReturnIcon from "../../assets/ReturnIcon";
 import {useNavigate} from "react-router-dom";
@@ -11,6 +11,10 @@ const Header = ({title}) => {
   const activeWallet  = useSelector(walletData)
   const fiat = useSelector(userFiat);
   const rate = useSelector(currentRate)
+
+  useEffect(() => {
+    console.log(activeWallet)
+  }, [activeWallet]);
 
   return (
     <div>

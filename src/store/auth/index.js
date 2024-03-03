@@ -49,9 +49,7 @@ const authSlice = createSlice({
   reducers: {
     // Редьюсер для установки активного кошелька
     setActiveWallet: (state, action) => {
-      console.log('action', action.payload)
       state.wallet = action.payload;
-      console.log('wallet', state.wallet)
     }
   },
   extraReducers: (builder) => {
