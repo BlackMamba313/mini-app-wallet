@@ -13,14 +13,11 @@ const CardsSlider = () => {
   const handleChangeIndex = (index) => {
     setCurrentIndex(index);
     dispatch(setActiveWallet(wallets[index]))
-    console.log('activeWallet>>>>>>>>>', activeWallet)
-    console.log('wallet>>>>>>>>>', wallets[index])
-    console.log('index>>>>>>>>>', index)
   };
   return (
     <SwipeableViews index={currentIndex} onChangeIndex={handleChangeIndex}>
       {wallets.map((card) => (
-        <Card network={card.network} address={card.address} token={card.token} balance={card.balance}/>
+        <Card key={card.address} network={card.network} address={card.address} token={card.token} balance={card.balance}/>
       ))}
     </SwipeableViews>
   );
