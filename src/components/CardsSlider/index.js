@@ -5,7 +5,7 @@ import {useSelector} from "react-redux";
 import {walletsData} from "../../store/auth/selectors";
 
 const CardsSlider = () => {
-  const { wallets } = useSelector(walletsData);
+  const wallets  = useSelector(walletsData);
   const [currentIndex, setCurrentIndex] = React.useState(0);
 
   const handleChangeIndex = (index) => {

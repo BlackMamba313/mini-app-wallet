@@ -28,7 +28,7 @@ const initialState = {
   loader: false,
 };
 
-const authSlice = createSlice({
+const currencySlice = createSlice({
   name: 'currency',
   initialState,
   reducers: {
@@ -50,4 +50,4 @@ const authSlice = createSlice({
   },
 });
 
-export default authSlice.reducer;
+export default currencySlice.reducer;

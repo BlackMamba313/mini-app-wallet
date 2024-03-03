@@ -1,4 +1,4 @@
 
-export const currentFiat = ({ currency }) => currency.currentFiat;
+export const userFiat = ({ currency }) => currency.currentFiat;
 
 
