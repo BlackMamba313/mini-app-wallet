@@ -16,7 +16,7 @@ const CardsSlider = () => {
   return (
     <SwipeableViews index={currentIndex} onChangeIndex={handleChangeIndex}>
       {wallets.map((card) => (
-        <Card key={card.address} network={card.network} address={card.address} token={card.token} balance={card.balance}/>
+        <Card key={card.token} network={card.network} address={card.address} token={card.token} balance={card.balance}/>
       ))}
     </SwipeableViews>
   );
