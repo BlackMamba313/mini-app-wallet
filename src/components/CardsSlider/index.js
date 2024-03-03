@@ -9,13 +9,10 @@ const CardsSlider = () => {
   const dispatch = useDispatch();
   const wallets  = useSelector(walletsData);
   const [currentIndex, setCurrentIndex] = React.useState(0);
-  const changeWallet = (wallet) => {
-    dispatch(setActiveWallet(wallet));
-  };
 
   const handleChangeIndex = (index) => {
     setCurrentIndex(index);
-    changeWallet(wallets[index])
+    dispatch(setActiveWallet(wallets[index]))
   };
   return (
     <SwipeableViews index={currentIndex} onChangeIndex={handleChangeIndex}>
