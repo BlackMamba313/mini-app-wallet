@@ -11,7 +11,7 @@ const Header = ({title}) => {
   const activeWallet  = useSelector(walletData)
   const fiat = useSelector(userFiat);
   const rate = useSelector(currentRate)
-  console.log('activeWallet>>>>>>>>>', activeWallet)
+
   return (
     <div>
       {title && <div className={styles.header}>
