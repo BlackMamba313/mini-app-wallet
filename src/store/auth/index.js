@@ -47,7 +47,7 @@ const authSlice = createSlice({
       state.loader = true;
     });
     builder.addCase(auth.fulfilled, (state, {payload}) => {
-      const {wallets, ...userDetails} = payload;
+      const {wallets, ...userDetails} = payload.user;
       state.user = userDetails;
       console.log("wallets>>>>>>>>", wallets)
       // eslint-disable-next-line no-unused-expressions
