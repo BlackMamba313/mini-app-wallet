@@ -21,7 +21,7 @@ const Header = ({title}) => {
       </div>
       }
     <div className={styles.cost}>
-      По курсу за 1 ${activeWallet.token} ${rate} ${fiat}
+      По курсу за 1 {activeWallet.token} {rate} {fiat}
     </div>
     </div>
   );
