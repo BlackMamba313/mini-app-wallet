@@ -51,14 +51,16 @@ const authSlice = createSlice({
       state.user = userDetails;
       console.log("wallets>>>>>>>>", wallets)
       // eslint-disable-next-line no-unused-expressions
-      wallets? state.wallets = wallets.flatMap(wallet =>
-        wallet.balances.map(balance => ({
-          network: wallet.network,
-          address: wallet.address,
-          token: balance.token,
-          balance: balance.balance,
-        }))
-      ): null
+      if (wallets) {
+        state.wallets = wallets.flatMap(wallet =>
+          wallet.balances.map(balance => ({
+            network: wallet.network,
+            address: wallet.address,
+            token: balance.token,
+            balance: balance.balance,
+          }))
+        );
+      }
       state.isLoggedIn = true
       state.onSuccess = true;
     });
