@@ -30,6 +30,12 @@ const initialState = {
       balance: 'BALANCE',
     }
   ],
+  currentWallet: {
+    network: 'NETWORK',
+    address: 'ADDRESS',
+    token: 'TOKEN',
+    balance: 'BALANCE',
+  },
   isAuthenticated: false,
   isLoggedIn: false,
   onSuccess: null,
@@ -40,7 +46,12 @@ const initialState = {
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: {
+    // Редьюсер для установки активного кошелька
+    setActiveWallet: (state, action) => {
+      state.wallet = action.payload;
+    }
+  },
   extraReducers: (builder) => {
     //auth
     builder.addCase(auth.pending, (state) => {
@@ -49,7 +60,6 @@ const authSlice = createSlice({
     builder.addCase(auth.fulfilled, (state, {payload}) => {
       const {wallets, ...userDetails} = payload.user;
       state.user = userDetails;
-      console.log("wallets>>>>>>>>", wallets)
       // eslint-disable-next-line no-unused-expressions
       if (wallets) {
         state.wallets = wallets.flatMap(wallet =>
@@ -60,6 +70,7 @@ const authSlice = createSlice({
             balance: balance.balance,
           }))
         );
+        state.currentWallet = state.wallets[0];
       }
       state.isLoggedIn = true
       state.onSuccess = true;
@@ -72,4 +83,5 @@ const authSlice = createSlice({
   },
 });
 
+export const { setActiveWallet } = authSlice.actions;
 export default authSlice.reducer;

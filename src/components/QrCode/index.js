@@ -1,9 +1,15 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import styles from './QrCode.module.css';
 import QRCode from "react-qr-code";
+import {walletData} from "../../store/auth/selectors";
+import {useSelector} from "react-redux";
 
 const QrCode = () => {
-  const [qrValue] = useState('');
+  const [qrValue, setQrValue] = useState('');
+  const activeWallet  = useSelector(walletData)
+  useEffect(() => {
+    setQrValue(activeWallet.address)
+  }, [activeWallet]);
 
   return (
     <div className={styles.wrapper}>
@@ -12,7 +18,7 @@ const QrCode = () => {
           <QRCode size={210} value={qrValue}/>
         </div>
       </div>
-      <p className={styles.walletAddress}>0x22aBb2d0e8A52eF99B8C095EFdC709176574AA82</p>
+      <p className={styles.walletAddress}>{activeWallet.address}</p>
       <div className={styles.copyBtns}>
         <div>
           <p className={styles.btnText}>Скопировать адрес</p>

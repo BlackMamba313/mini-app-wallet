@@ -22,7 +22,7 @@ export const ChangeCurrentFiat = createAsyncThunk(
 
 const initialState = {
   currentFiat: 'RUB',
-  rate: null,
+  rate: '???',
   onSuccess: null,
   error: null,
   loader: false,

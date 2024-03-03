@@ -1,14 +1,17 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styles from './Header.module.css';
 import ReturnIcon from "../../assets/ReturnIcon";
 import {useNavigate} from "react-router-dom";
+import {useSelector} from "react-redux";
+import {currentRate, userFiat} from "../../store/currency/selectors";
+import {walletData} from "../../store/auth/selectors";
 
 const Header = ({title}) => {
   const navigate = useNavigate();
-  const moskData = {
-    cost: 'По курсу за 1 BTC 4 642 440.01₽',
-  }
-  console.log(navigate)
+  const activeWallet  = useSelector(walletData)
+  const fiat = useSelector(userFiat);
+  const rate = useSelector(currentRate)
+
   return (
     <div>
       {title && <div className={styles.header}>
@@ -19,7 +22,7 @@ const Header = ({title}) => {
       </div>
       }
     <div className={styles.cost}>
-      {moskData.cost}
+      По курсу за 1 {activeWallet.token} {rate} {fiat}
     </div>
     </div>
   );
