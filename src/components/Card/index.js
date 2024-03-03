@@ -35,9 +35,7 @@ const Card = ({network, address, token, balance}) => {
             542441.01 {fiat}
           </motion.p>
           <p className={styles.walletNumber}>{address}</p>
-          <p className={styles.userName}>Имя пользователя:
-            {user?.userName}
-          </p>
+          <p className={styles.userName}>Имя пользователя: {user?.userName}</p>
           <div className={styles.cardFooter}>
             <div className={styles.cardFooterBox}>
               <p className={styles.cardId}><AccountIcon/> ID 1062567639</p>
