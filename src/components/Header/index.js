@@ -4,9 +4,11 @@ import ReturnIcon from "../../assets/ReturnIcon";
 import {useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {currentRate, userFiat} from "../../store/currency/selectors";
+import {walletData} from "../../store/auth/selectors";
 
-const Header = ({title, activeWallet}) => {
+const Header = ({title}) => {
   const [update, setUpdate] = useState(true);
+  const activeWallet  = useSelector(walletData)
   const navigate = useNavigate();
   const fiat = useSelector(userFiat);
   const rate = useSelector(currentRate)
