@@ -22,7 +22,6 @@ export const refreshToken = createAsyncThunk(
 
 const initialState = {
   user: {
-    currentFiat: 'RUB',
     wallets: [
       {
         network: 'TEST',
@@ -37,9 +36,8 @@ const initialState = {
   isAuthenticated: false,
   isLoggedIn: false,
   onSuccess: null,
-  loaders: {
-    authentication: false,
-  },
+  error: null,
+  loaders:  false,
 };
 
 const authSlice = createSlice({
@@ -50,17 +48,15 @@ const authSlice = createSlice({
   extraReducers: (builder) => {
     //auth
     builder.addCase(auth.pending, (state) => {
-      state.loaders.common = true;
+      state.loader = true;
     });
     builder.addCase(auth.fulfilled, (state, {payload}) => {
       state.user = payload;
       state.isLoggedIn = true
       state.onSuccess = true;
-      localStorage.setItem('to', payload.to);
-      localStorage.setItem('ttl', payload.ttl);
     });
     builder.addCase(auth.rejected, (state, action) => {
-      state.loaders.common = false; // Останавливаем индикатор загрузки
+      state.loader = false; // Останавливаем индикатор загрузки
       state.error = action.error.message;
       console.log('message', action.meta.arg)
     });

@@ -5,11 +5,15 @@ import AccountIcon from "../../assets/AccountIcon";
 import { motion } from 'framer-motion';
 import {userData} from "../../store/auth/selectors";
 import {useSelector} from "react-redux";
+import {currentFiat} from "../../store/currency/selectors";
 
 
 
 const Card = ({network, address, token, balance}) => {
   const user = useSelector(userData);
+  const fiat = useSelector(currentFiat)
+
+  console.log('user>>>>>>>>>', user)
 
   return (
     <div className={styles.wrapper}>
@@ -17,7 +21,7 @@ const Card = ({network, address, token, balance}) => {
         <div className={styles.network}> {network} </div>
         <div className={styles.cardHeader}>
           <p className={styles.cardTitle}>Ваш баланс</p>
-          <p className={styles.currency}>{token}/{user.currentFiat}</p>
+          <p className={styles.currency}>{token}/{fiat}</p>
         </div>
         <p className={styles.mainBalance}>{balance}</p>
         <motion.p
@@ -29,7 +33,7 @@ const Card = ({network, address, token, balance}) => {
         542441.01руб</motion.p>
         <p className={styles.walletNumber}>{address}</p>
         <p className={styles.userName}>Ваше имя пользователя:
-          {user?.userName}
+          {user.userName}
         </p>
         <div className={styles.cardFooter}>
           <div className={styles.cardFooterBox}>
