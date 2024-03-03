@@ -5,13 +5,12 @@ import AccountIcon from "../../assets/AccountIcon";
 import { motion } from 'framer-motion';
 import {userData} from "../../store/auth/selectors";
 import {useSelector} from "react-redux";
-import {currentFiat} from "../../store/currency/selectors";
 
 
 
 const Card = ({network, address, token, balance}) => {
   const user = useSelector(userData);
-  const fiat = useSelector(currentFiat)
+  const fiat = 'RUB'
 
   console.log('user>>>>>>>>>', user)
 
