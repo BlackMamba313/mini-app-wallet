@@ -1,20 +1,15 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import styles from './Header.module.css';
 import ReturnIcon from "../../assets/ReturnIcon";
 import {useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {currentRate, userFiat} from "../../store/currency/selectors";
-import {walletData} from "../../store/auth/selectors";
 
-const Header = ({title}) => {
+const Header = ({title, activeWallet}) => {
   const navigate = useNavigate();
-  const activeWallet  = useSelector(walletData)
   const fiat = useSelector(userFiat);
   const rate = useSelector(currentRate)
 
-  useEffect(() => {
-    console.log(activeWallet)
-  }, [activeWallet]);
 
   return (
     <div>
