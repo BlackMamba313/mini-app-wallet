@@ -49,6 +49,7 @@ const authSlice = createSlice({
     builder.addCase(auth.fulfilled, (state, {payload}) => {
       const {wallets, ...userDetails} = payload;
       state.user = userDetails;
+      console.log("wallets>>>>>>>>", wallets)
       state.wallets = wallets.flatMap(wallet =>
         wallet.balances.map(balance => ({
           network: wallet.network,
