@@ -14,6 +14,8 @@ const CardsSlider = () => {
     setCurrentIndex(index);
     dispatch(setActiveWallet(wallets[index]))
     console.log('activeWallet>>>>>>>>>', activeWallet)
+    console.log('wallet>>>>>>>>>', wallets[index])
+    console.log('index>>>>>>>>>', index)
   };
   return (
     <SwipeableViews index={currentIndex} onChangeIndex={handleChangeIndex}>
