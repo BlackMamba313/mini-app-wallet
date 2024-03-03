@@ -21,37 +21,42 @@ export const refreshToken = createAsyncThunk(
 );
 
 const initialState = {
-  user: {
-    wallets: [
-      {
-        network: 'TEST',
-        address: 'TEST',
-        balances: [{
-          token: 'TEST',
-          balance: 'TEST'
-        }],
-      }
-    ]
-  },
+  user: null,
+  wallets: [
+    {
+      network: 'TEST',
+      address: 'TEST',
+      token: 'TEST',
+      balance: 'TEST',
+    }
+  ],
   isAuthenticated: false,
   isLoggedIn: false,
   onSuccess: null,
   error: null,
-  loaders:  false,
+  loaders: false,
 };
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {
-  },
+  reducers: {},
   extraReducers: (builder) => {
     //auth
     builder.addCase(auth.pending, (state) => {
       state.loader = true;
     });
     builder.addCase(auth.fulfilled, (state, {payload}) => {
-      state.user = payload;
+      const {wallets, ...userDetails} = payload;
+      state.user = userDetails;
+      state.wallets = wallets.flatMap(wallet =>
+        wallet.balances.map(balance => ({
+          network: wallet.network,
+          address: wallet.address,
+          token: balance.token,
+          balance: balance.balance,
+        }))
+      );
       state.isLoggedIn = true
       state.onSuccess = true;
     });
