@@ -26,7 +26,7 @@ const initialState = {
     {
       network: 'NETWORK',
       address: 'ADDRESS',
-      token: 'TOKEN',
+      token: 'TO',
       balance: 'BALANCE',
     }
   ],
@@ -49,7 +49,7 @@ const authSlice = createSlice({
   reducers: {
     // Редьюсер для установки активного кошелька
     setActiveWallet: (state, action) => {
-      state.wallet = action.payload;
+      state.currentWallet = action.payload;
     }
   },
   extraReducers: (builder) => {

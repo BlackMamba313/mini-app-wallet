@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import styles from './Header.module.css';
 import ReturnIcon from "../../assets/ReturnIcon";
 import {useNavigate} from "react-router-dom";
@@ -7,15 +7,10 @@ import {currentRate, userFiat} from "../../store/currency/selectors";
 import {walletData} from "../../store/auth/selectors";
 
 const Header = ({title}) => {
-  const [update, setUpdate] = useState(true);
   const activeWallet  = useSelector(walletData)
   const navigate = useNavigate();
   const fiat = useSelector(userFiat);
   const rate = useSelector(currentRate)
-  useEffect(() => {
-    setUpdate( !update); // Принудительное обновление компонента при изменении activeWallet
-  }, [activeWallet, update]);
-  console.log(update)
   return (
     <div>
       {title && <div className={styles.header}>
@@ -26,7 +21,7 @@ const Header = ({title}) => {
       </div>
       }
     <div className={styles.cost}>
-      По курсу за 1 {activeWallet.token} {rate} {fiat}
+      По курсу за 1 ${activeWallet.token} ${rate} ${fiat}
     </div>
     </div>
   );
