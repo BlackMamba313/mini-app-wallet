@@ -62,9 +62,6 @@
 }
 
 .cardFooterBox {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
     z-index: 3;
 }
 
@@ -76,6 +73,9 @@
 }
 
 .cardStatus {
+    position: absolute;
+    right : 10px;
+    bottom: 5px;
     margin-bottom: 2px;
     color: rgba(239, 0, 74, 0.90);
     font-size: 16px;
