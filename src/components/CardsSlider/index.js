@@ -2,14 +2,13 @@ import React from 'react';
 import SwipeableViews from 'react-swipeable-views';
 import Card from "../Card";
 import {useDispatch, useSelector} from "react-redux";
-import {walletData, walletsData} from "../../store/auth/selectors";
+import {walletsData} from "../../store/auth/selectors";
 import { setActiveWallet } from "../../store/auth";
 
 const CardsSlider = () => {
   const dispatch = useDispatch();
   const wallets  = useSelector(walletsData);
   const [currentIndex, setCurrentIndex] = React.useState(0);
-  const activeWallet  = useSelector(walletData)
   const handleChangeIndex = (index) => {
     setCurrentIndex(index);
     dispatch(setActiveWallet(wallets[index]))
