@@ -26,14 +26,9 @@ const Card = ({network, address, token, balance}) => {
             <p className={styles.currency}>{token}/{fiat}</p>
           </div>
           <p className={styles.mainBalance}>{balance}</p>
-          <motion.p
-            initial={{filter: 'blur(0px)'}}
-            animate={{filter: 'blur(4px)'}}
-            transition={{duration: 0.5}}
-            className={styles.subBalance}
-          >
-            542441.01 {fiat}
-          </motion.p>
+          <p className={styles.subBalance}>
+            ??? {fiat}
+          </p>
           <p className={styles.walletNumber}>{address}</p>
           <p className={styles.userName}>Имя пользователя: {user?.userName}</p>
           <div className={styles.cardFooter}>
