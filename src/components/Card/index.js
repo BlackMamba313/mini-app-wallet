@@ -12,7 +12,7 @@ const Card = ({network, address, token, balance}) => {
   const user = useSelector(userData);
   const fiat = useSelector(userFiat);
 
-  const cardAnimationStyle = user ? {filter: 'blur(0px)'} : {filter: 'blur(4px)'};
+  const cardAnimationStyle = !user ? {filter: 'blur(0px)'} : {filter: 'blur(4px)'};
 
   return (
     <div className={styles.wrapper}>
@@ -32,19 +32,18 @@ const Card = ({network, address, token, balance}) => {
             transition={{duration: 0.5}}
             className={styles.subBalance}
           >
-            542441.01руб
+            542441.01 {fiat}
           </motion.p>
           <p className={styles.walletNumber}>{address}</p>
-          <p className={styles.userName}>Ваше имя пользователя:
+          <p className={styles.userName}>Имя пользователя:
             {user?.userName}
           </p>
           <div className={styles.cardFooter}>
             <div className={styles.cardFooterBox}>
-              <p className={styles.cardId}><AccountIcon/> ID {user?.id}</p>
+              <p className={styles.cardId}><AccountIcon/> ID 1062567639</p>
             </div>
             <div className={styles.cardFooterBox}>
               <p className={styles.cardStatus}><SecurityIcon/> Не проверено!</p>
-
             </div>
             <div className={styles.network}>{network}</div>
           </div>
