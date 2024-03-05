@@ -6,7 +6,7 @@ import axiosInstance from '../axios';
 export const auth = createAsyncThunk(
   'auth',
   async (params) => {
-    const {data} = await axiosInstance.post('auth-user', params);
+    const {data} = await axiosInstance.post('authuser', params);
     return data;
   }
 );
