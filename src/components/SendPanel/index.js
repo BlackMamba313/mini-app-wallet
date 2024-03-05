@@ -11,7 +11,9 @@ const SendPanel = () => {
         placeholder='Выберите контакт'
         className={styles.input}/>
       <input
-        type="number"
+        type="text"
+        inputMode="decimal"
+        pattern="[0-9]*[.,]?[0-9]*"
         placeholder='Введите сумму'
         className={styles.input}/>
       <p className={styles.text}>Отправить по QR</p>
