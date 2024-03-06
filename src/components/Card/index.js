@@ -33,7 +33,7 @@ const Card = ({network, address, token, balance}) => {
           <p className={styles.userName}>Имя пользователя: {user?.userName}</p>
           <div className={styles.cardFooter}>
             <div className={styles.cardFooterBox}>
-              <p className={styles.cardId}><AccountIcon/> user?.id</p>
+              <p className={styles.cardId}><AccountIcon/> {user?.id}</p>
             </div>
             <div className={styles.cardFooterBox}>
               <p className={styles.cardStatus}><SecurityIcon/> Не проверено!</p>
