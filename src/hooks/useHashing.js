@@ -7,20 +7,15 @@ function useHashing() {
     return hash.toString(CryptoJS.enc.Hex);
   };
 
-  const createSortedDataString = (dataToHash = {}) => {
-    // Проверка и инициализация dataToHash пустым объектом, если данные не предоставлены
+  const createSortedDataString = (dataToHash) => {
     dataToHash = dataToHash || {};
-
     // Преобразование логических значений в 1
     Object.keys(dataToHash).forEach(key => {
       if (typeof dataToHash[key] === 'boolean') {
         dataToHash[key] = dataToHash[key] ? 1 : 0;
       }
     });
-
-    // Добавление временной метки
     dataToHash.ti = Math.floor(Date.now() / 1000);
-
     const sortedKeys = Object.keys(dataToHash).sort();
     const dataString = sortedKeys.map(key => `${key}=${dataToHash[key]}`).join('|');
     console.log('Sorted data string for hashing:', dataString);
@@ -41,7 +36,6 @@ function useHashing() {
 
   return { hash };
 }
-
 
 export default useHashing;
 
