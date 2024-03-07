@@ -29,9 +29,10 @@ function App() {
   useEffect(() => {
       const { requestData } = hash();
     console.log('requestData', requestData)
+      const iso = {iso: fiat}
       dispatch(GetFiat(requestData));
       dispatch(GetCrypto(requestData));
-      dispatch(getCurrencyRate(fiat));
+      dispatch(getCurrencyRate(iso));
   }, [dispatch, hash, fiat]);
 
   useEffect(() => {
