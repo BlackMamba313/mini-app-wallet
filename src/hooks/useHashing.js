@@ -15,22 +15,25 @@ function useHashing() {
         dataToHash[key] = dataToHash[key] ? 1 : 0;
       }
     });
+    // Добавляем временную метку ti
     dataToHash.ti = Math.floor(Date.now() / 1000);
+
+    // Создаем отсортированную строку для хеширования
     const sortedKeys = Object.keys(dataToHash).sort();
     const dataString = sortedKeys.map(key => `${key}=${dataToHash[key]}`).join('|');
     console.log('Sorted data string for hashing:', dataString);
 
-    return dataString;
+    return { dataString, ti: dataToHash.ti };
   };
 
   const hash = (dataToHash) => {
-    const dataString = createSortedDataString(dataToHash);
+    const { dataString, ti } = createSortedDataString(dataToHash);
     const secretKey = process.env.REACT_APP_SECRET_KEY_HASH;
 
     const si = hmacSHA256Hash(dataString, secretKey);
 
     return {
-      requestData: { ...dataToHash, si }
+      requestData: { ...dataToHash, si, ti }
     };
   };
 
