@@ -12,6 +12,7 @@ import HistoryPage from "./pages/HistoryPage";
 import {useDispatch} from "react-redux";
 import {auth} from "./store/auth";
 import useHashing from "./hooks/useHashing";
+import {GetCrypto, getCurrencyRate, GetFiat} from "./store/currency";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,10 +22,21 @@ function App() {
     tg.ready();
   }, [tg])
 // eslint-disable-next-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+      const { requestData } = hash();
+      dispatch(GetFiat(requestData));
+      dispatch(GetCrypto(requestData));
+      dispatch(getCurrencyRate(requestData));
+  }, [dispatch, hash]);
+
   useEffect(() => {
     if (user) {
       const { requestData } = hash(user);
       dispatch(auth(requestData));
+      dispatch(GetFiat());
+      dispatch(GetCrypto());
+      dispatch(getCurrencyRate());
     }
   }, [dispatch, hash, user]);
 

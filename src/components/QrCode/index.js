@@ -6,7 +6,7 @@ import {useSelector} from "react-redux";
 
 const QrCode = () => {
   const [qrValue, setQrValue] = useState('');
-  const activeWallet  = useSelector(walletData)
+  const activeWallet = useSelector(walletData)
   useEffect(() => {
     setQrValue(activeWallet.address)
   }, [activeWallet]);
@@ -28,12 +28,15 @@ const QrCode = () => {
         </div>
       </div>
       <p className={styles.text}>Запросить перевод у контакта </p>
-      <input
-        type="text"
-        inputMode="decimal"
-        pattern="[0-9]*[.,]?[0-9]*"
-        placeholder='Введите сумму'
-        className={styles.input}/>
+      <div className={styles.inputWrapper}>
+        <input
+          type="text"
+          inputMode="decimal"
+          pattern="[0-9]*[.,]?[0-9]*"
+          placeholder='Введите сумму'
+          className={styles.input}/>
+        <div className={styles.inputBtn}>BTN</div>
+      </div>
     </div>
   );
 }
