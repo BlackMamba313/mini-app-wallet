@@ -9,15 +9,17 @@ import SellPage from "./pages/SellPage";
 import SendPage from "./pages/SendPage";
 import CreatePage from "./pages/CreatePage";
 import HistoryPage from "./pages/HistoryPage";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {auth} from "./store/auth";
 import useHashing from "./hooks/useHashing";
 import {GetCrypto, getCurrencyRate, GetFiat} from "./store/currency";
+import {userFiat} from "./store/currency/selectors";
 
 function App() {
   const dispatch = useDispatch();
   const { hash } = useHashing();
   const {tg, user} = useTelegram();
+  const fiat = useSelector(userFiat);
   useEffect(() => {
     tg.ready();
   }, [tg])
@@ -29,7 +31,7 @@ function App() {
     console.log('requestData', requestData)
       dispatch(GetFiat(requestData));
       dispatch(GetCrypto(requestData));
-      dispatch(getCurrencyRate(requestData));
+      dispatch(getCurrencyRate(fiat));
   }, [dispatch, hash]);
 
   useEffect(() => {
