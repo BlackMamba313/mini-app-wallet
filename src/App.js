@@ -32,7 +32,7 @@ function App() {
       dispatch(GetFiat(requestData));
       dispatch(GetCrypto(requestData));
       dispatch(getCurrencyRate(fiat));
-  }, [dispatch, hash]);
+  }, [dispatch, hash, fiat]);
 
   useEffect(() => {
     if (user) {
