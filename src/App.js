@@ -36,6 +36,12 @@ function App() {
   }, [dispatch, hash, fiat]);
 
   useEffect(() => {
+    const iso = {iso: fiat}
+    const { requestData } = hash(iso);
+    dispatch(getCurrencyRate(requestData));
+  }, [dispatch, hash, fiat]);
+
+  useEffect(() => {
     if (user) {
       const { requestData } = hash(user);
       dispatch(auth(requestData));
