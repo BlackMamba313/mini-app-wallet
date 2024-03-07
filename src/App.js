@@ -34,9 +34,6 @@ function App() {
     if (user) {
       const { requestData } = hash(user);
       dispatch(auth(requestData));
-      dispatch(GetFiat());
-      dispatch(GetCrypto());
-      dispatch(getCurrencyRate());
     }
   }, [dispatch, hash, user]);
 
