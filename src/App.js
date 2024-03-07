@@ -25,6 +25,7 @@ function App() {
 
   useEffect(() => {
       const { requestData } = hash();
+    console.log('requestData', requestData)
       dispatch(GetFiat(requestData));
       dispatch(GetCrypto(requestData));
       dispatch(getCurrencyRate(requestData));
