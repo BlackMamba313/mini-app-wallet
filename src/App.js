@@ -22,6 +22,7 @@ function App() {
     tg.ready();
   }, [tg])
 // eslint-disable-next-line react-hooks/exhaustive-deps
+  console.log('tgData>>>>>>>>>>>>>>>>>>>', tg)
 
   useEffect(() => {
       const { requestData } = hash();
