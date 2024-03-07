@@ -43,5 +43,7 @@ function useHashing() {
 }
 
 
+export default useHashing;
+
 
 
