@@ -46,11 +46,11 @@ function App() {
       dispatch(auth(requestData));}
   }, [dispatch, hash, user]);
 
-  useEffect(() => {
-    wallets &&
-    dispatch(setActiveWallet(wallets[0]))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, navigate]);
+  // useEffect(() => {
+  //   wallets &&
+  //   dispatch(setActiveWallet(wallets[0]))
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [dispatch, navigate]);
 
   return (
     <div className="App">
