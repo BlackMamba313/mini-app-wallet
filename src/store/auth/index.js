@@ -54,7 +54,6 @@ const authSlice = createSlice({
             balance: balance.balance,
           }))
         );
-        state.currentWallet = state.wallets[0];
       }
       state.isLoggedIn = true
       state.onSuccess = true;
