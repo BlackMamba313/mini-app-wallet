@@ -49,6 +49,7 @@ function App() {
   useEffect(() => {
     wallets &&
     dispatch(setActiveWallet(wallets[0]))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, navigate]);
 
   return (
