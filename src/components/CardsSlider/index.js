@@ -3,7 +3,7 @@ import SwipeableViews from 'react-swipeable-views';
 import Card from "../Card";
 import {useDispatch, useSelector} from "react-redux";
 import {walletsData} from "../../store/auth/selectors";
-import { setActiveWallet } from "../../store/auth";
+import { setActiveWallet } from "../../store/currency";
 
 const CardsSlider = () => {
   const dispatch = useDispatch();
@@ -15,7 +15,8 @@ const CardsSlider = () => {
   };
   return (
     <SwipeableViews index={currentIndex} onChangeIndex={handleChangeIndex}>
-      {wallets.map((card) => (
+
+      {wallets && wallets.map((card) => (
         <Card key={card.token} network={card.network} address={card.address} token={card.token} balance={card.balance}/>
       ))}
     </SwipeableViews>

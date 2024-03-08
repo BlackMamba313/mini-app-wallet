@@ -22,20 +22,7 @@ export const refreshToken = createAsyncThunk(
 
 const initialState = {
   user: null,
-  wallets: [
-    {
-      network: 'NETWORK',
-      address: 'ADDRESS',
-      token: 'TO',
-      balance: 'BALANCE',
-    }
-  ],
-  currentWallet: {
-    network: 'NETWORK',
-    address: 'ADDRESS',
-    token: 'TOKEN',
-    balance: 'BALANCE',
-  },
+  wallets:  null,
   isAuthenticated: false,
   isLoggedIn: false,
   onSuccess: null,
@@ -48,9 +35,6 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     // Редьюсер для установки активного кошелька
-    setActiveWallet: (state, action) => {
-      state.currentWallet = action.payload;
-    }
   },
   extraReducers: (builder) => {
     //auth
@@ -83,5 +67,4 @@ const authSlice = createSlice({
   },
 });
 
-export const { setActiveWallet } = authSlice.actions;
 export default authSlice.reducer;

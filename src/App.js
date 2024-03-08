@@ -1,7 +1,7 @@
 import './App.css';
 import React, {useEffect} from "react";
 import {useTelegram} from "./hooks/useTelegram";
-import {Route, Routes} from 'react-router-dom'
+import {Route, Routes, useNavigate} from 'react-router-dom'
 import MainPage from "./pages/MainPage";
 import BuyPage from "./pages/BuyPage";
 import ReceivePage from "./pages/ReceivePage";
@@ -12,19 +12,20 @@ import HistoryPage from "./pages/HistoryPage";
 import {useDispatch, useSelector} from "react-redux";
 import {auth} from "./store/auth";
 import useHashing from "./hooks/useHashing";
-import {GetCrypto, getCurrencyRate, GetFiat} from "./store/currency";
+import {GetCrypto, getCurrencyRate, GetFiat, setActiveWallet} from "./store/currency";
 import {userFiat} from "./store/currency/selectors";
+import {walletsData} from "./store/auth/selectors";
 
 function App() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const wallets  = useSelector(walletsData);
   const { hash } = useHashing();
   const {tg, user} = useTelegram();
   const fiat = useSelector(userFiat);
   useEffect(() => {
     tg.ready();
   }, [tg])
-// eslint-disable-next-line react-hooks/exhaustive-deps
-  console.log('tgData>>>>>>>>>>>>>>>>>>>', tg)
 
   useEffect(() => {
       const { requestData } = hash();
@@ -43,8 +44,24 @@ function App() {
     if (user) {
       const { requestData } = hash(user);
       dispatch(auth(requestData));
+    } else {
+      const userMock = {
+        allows_write_to_pm: 1,
+        first_name: "Alex",
+        id: 1062567639,
+        is_premium: 1,
+        language_code: "en",
+        username: "AleksKonstant"
+      }
+      const { requestData } = hash(userMock);
+      dispatch(auth(requestData));
     }
   }, [dispatch, hash, user]);
+
+  useEffect(() => {
+    wallets &&
+    dispatch(setActiveWallet(wallets[0]))
+  }, [dispatch, wallets, navigate]);
 
   return (
     <div className="App">
