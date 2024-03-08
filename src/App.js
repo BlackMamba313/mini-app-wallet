@@ -43,26 +43,13 @@ function App() {
   useEffect(() => {
     if (user) {
       const { requestData } = hash(user);
-      dispatch(auth(requestData));
-    } else {
-      // const userMock = {
-      //   allows_write_to_pm: 1,
-      //   first_name: "Alex",
-      //   id: 1062567639,
-      //   is_premium: 1,
-      //   language_code: "en",
-      //   username: "AleksKonstant"
-      // }
-      // const { requestData } = hash(userMock);
-      // dispatch(auth(requestData));
-      console.log('user is not')
-    }
+      dispatch(auth(requestData));}
   }, [dispatch, hash, user]);
 
   useEffect(() => {
     wallets &&
     dispatch(setActiveWallet(wallets[0]))
-  }, [dispatch, wallets, navigate]);
+  }, [dispatch, navigate]);
 
   return (
     <div className="App">
