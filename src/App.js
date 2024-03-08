@@ -21,30 +21,31 @@ function App() {
   const dispatch = useDispatch();
   const wallets  = useSelector(walletsData);
   const { hash } = useHashing();
-  const {tg, user} = useTelegram();
+  const { user} = useTelegram();
   const fiat = useSelector(userFiat);
-  useEffect(() => {
-    tg.ready();
-  }, [tg])
+
 
   useEffect(() => {
       const { requestData } = hash();
     console.log('requestData', requestData)
       dispatch(GetFiat(requestData));
       dispatch(GetCrypto(requestData));
-  }, [dispatch, hash, fiat]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     const iso = {iso: fiat}
     const { requestData } = hash(iso);
     dispatch(getCurrencyRate(requestData));
-  }, [dispatch, hash, fiat]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (user) {
       const { requestData } = hash(user);
       dispatch(auth(requestData));}
-  }, [dispatch, hash, user]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     wallets &&
