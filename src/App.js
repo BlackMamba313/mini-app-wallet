@@ -12,14 +12,11 @@ import HistoryPage from "./pages/HistoryPage";
 import {useDispatch, useSelector} from "react-redux";
 import {auth} from "./store/auth";
 import useHashing from "./hooks/useHashing";
-import {GetCrypto, getCurrencyRate, GetFiat, setActiveWallet} from "./store/currency";
+import {GetCrypto, getCurrencyRate, GetFiat} from "./store/currency";
 import {userFiat} from "./store/currency/selectors";
-import {walletsData} from "./store/auth/selectors";
 
 function App() {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const wallets  = useSelector(walletsData);
   const { hash } = useHashing();
   const {tg, user} = useTelegram();
   const fiat = useSelector(userFiat);
@@ -46,11 +43,11 @@ function App() {
       dispatch(auth(requestData));}
   }, [dispatch, hash, user]);
 
-  useEffect(() => {
-    wallets &&
-    dispatch(setActiveWallet(wallets[0]))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, navigate]);
+  // useEffect(() => {
+  //   wallets &&
+  //   dispatch(setActiveWallet(wallets[0]))
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [dispatch, navigate]);
 
   return (
     <div className="App">
