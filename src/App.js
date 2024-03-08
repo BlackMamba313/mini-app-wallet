@@ -51,7 +51,7 @@ function App() {
     wallets &&
     dispatch(setActiveWallet(wallets[0]))
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, navigate]);
+  }, [dispatch, wallets, navigate]);
 
   return (
     <div className="App">
