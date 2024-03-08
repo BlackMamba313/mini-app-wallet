@@ -18,11 +18,9 @@ import {userFiat} from "./store/currency/selectors";
 function App() {
   const dispatch = useDispatch();
   const { hash } = useHashing();
-  const {tg, user} = useTelegram();
+  const { user } = useTelegram();
   const fiat = useSelector(userFiat);
-  useEffect(() => {
-    tg.ready();
-  }, [tg])
+
 
   useEffect(() => {
       const { requestData } = hash();
