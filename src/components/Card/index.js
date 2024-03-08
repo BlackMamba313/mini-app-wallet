@@ -25,7 +25,7 @@ const Card = ({network, address, token, balance}) => {
             <p className={styles.cardTitle}>Ваш баланс</p>
             <p className={styles.currency}>{token}/{fiat}</p>
           </div>
-          <p className={styles.mainBalance}>{balance}</p>
+          <p className={styles.mainBalance}>{balance ? parseFloat(balance).toFixed(3) : '0.00'}</p>
           <p className={styles.subBalance}>
             {balance*rate} {fiat}
           </p>
