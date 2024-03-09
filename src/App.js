@@ -24,6 +24,12 @@ function App() {
   const { user} = useTelegram();
   const fiat = useSelector(userFiat);
 
+  useEffect(() => {
+    if (user) {
+      const { requestData } = hash(user);
+      dispatch(auth(requestData));}
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
       const { requestData } = hash();
@@ -37,13 +43,6 @@ function App() {
     const iso = {iso: fiat}
     const { requestData } = hash(iso);
     dispatch(getCurrencyRate(requestData));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    if (user) {
-      const { requestData } = hash(user);
-      dispatch(auth(requestData));}
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
