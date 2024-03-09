@@ -11,11 +11,10 @@ export const auth = createAsyncThunk(
   }
 );
 
-export const refreshToken = createAsyncThunk(
-  'refreshToken',
-  async () => {
-    const bodyData = {ti: Math.floor(Date.now() / 1000), to: localStorage.getItem('to')};
-    const {data} = await axiosInstance.post('refreshToken', bodyData);
+export const transfer = createAsyncThunk(
+  'transfer',
+  async (params) => {
+    const {data} = await axiosInstance.post('transfer', params);
     return data;
   }
 );
@@ -61,7 +60,18 @@ const authSlice = createSlice({
     builder.addCase(auth.rejected, (state, action) => {
       state.loader = false; // Останавливаем индикатор загрузки
       state.error = action.error.message;
-      console.log('message', action.meta.arg)
+    });
+    //transfer
+    builder.addCase(transfer.pending, (state) => {
+      state.loader = true;
+    });
+    builder.addCase(transfer.fulfilled, (state) => {
+      state.isLoggedIn = true
+      state.onSuccess = true;
+    });
+    builder.addCase(transfer.rejected, (state, action) => {
+      state.loader = false; // Останавливаем индикатор загрузки
+      state.error = action.error.message;
     });
   },
 });

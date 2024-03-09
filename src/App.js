@@ -27,13 +27,24 @@ function App() {
   useEffect(() => {
     if (user) {
       const { requestData } = hash(user);
-      dispatch(auth(requestData));}
+      dispatch(auth(requestData));} else {
+      const userMock = {
+        allows_write_to_pm: 1,
+        first_name: "Alex",
+        id: 1062567639,
+        is_premium: 1,
+        language_code: "en",
+        username: "AleksKonstant"
+      }
+      const { requestData } = hash(userMock);
+      dispatch(auth(requestData));
+      console.log('user is not')
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
       const { requestData } = hash();
-    console.log('requestData', requestData)
       dispatch(GetFiat(requestData));
       dispatch(GetCrypto(requestData));
     // eslint-disable-next-line react-hooks/exhaustive-deps

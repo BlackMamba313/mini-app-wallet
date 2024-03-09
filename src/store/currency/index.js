@@ -73,7 +73,6 @@ const currencySlice = createSlice({
       builder.addCase(getCurrencyRate.rejected, (state, action) => {
         state.loader = false; // Останавливаем индикатор загрузки
         state.error = action.error.message;
-        console.log('message', action.meta.arg)
       });
       //GetFiat
       builder.addCase(GetFiat.pending, (state) => {
@@ -86,7 +85,6 @@ const currencySlice = createSlice({
       builder.addCase(GetFiat.rejected, (state, action) => {
         state.loader = false; // Останавливаем индикатор загрузки
         state.error = action.error.message;
-        console.log('message', action.meta.arg)
       });
       //GetCrypto
       builder.addCase(GetCrypto.pending, (state) => {
@@ -99,7 +97,6 @@ const currencySlice = createSlice({
       builder.addCase(GetCrypto.rejected, (state, action) => {
         state.loader = false; // Останавливаем индикатор загрузки
         state.error = action.error.message;
-        console.log('message', action.meta.arg)
       });
     },
   });

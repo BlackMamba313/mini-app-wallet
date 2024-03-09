@@ -3,7 +3,6 @@ import CryptoJS from 'crypto-js';
 function useHashing() {
   const hmacSHA256Hash = (dataString, secretKey) => {
     const hash = CryptoJS.HmacSHA256(dataString, secretKey);
-    console.log('hashing:', dataString, secretKey);
     return hash.toString(CryptoJS.enc.Hex);
   };
 
@@ -21,8 +20,6 @@ function useHashing() {
     // Создаем отсортированную строку для хеширования
     const sortedKeys = Object.keys(dataToHash).sort();
     const dataString = sortedKeys.map(key => `${key}=${dataToHash[key]}`).join('|');
-    console.log('Sorted data string for hashing:', dataString);
-
     return { dataString, ti: dataToHash.ti };
   };
 

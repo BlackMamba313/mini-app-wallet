@@ -24,3 +24,26 @@
     margin-top: 40px;
     font-size: 34px;
 }
+
+.sendButton {
+    margin: 20px 0;
+    background-color: #3a2cf5; /* Зеленый */
+    width: 150px;
+    height: 52px;
+    border: none;
+    border-radius: 10px;
+    font-size: 23px;
+    color: #FFF;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.sendButton:hover {
+    background-color: #3a2cf5;
+    transform: scale(1.05);
+}
+
+.sendButton:disabled {
+    background-color: #A9A9A9; /* Более темный серый для неактивной кнопки */
+    cursor: not-allowed;
+}
