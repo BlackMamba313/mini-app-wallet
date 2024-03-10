@@ -6,7 +6,6 @@ const UserProfile = () => {
   const {
     register,
     handleSubmit,
-    formState: {errors}
   } = useForm({
     defaultValues: {
       currency: "RUB", // Устанавливаем дефолтное значение для валюты
