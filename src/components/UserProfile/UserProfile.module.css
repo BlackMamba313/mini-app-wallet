@@ -36,18 +36,20 @@
 .verifyButton {
     background-color: #4CAF50;
     color: white;
+    border-radius: 10px;
 }
 
 .partnerButton {
     background-color: #008CBA;
     color: white;
+    border-radius: 10px;
 }
 
 .saveButton {
     margin-bottom: 10px;
     padding: 10px;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
     background-color: #2196F3; /* Синий цвет для выделения кнопки сохранения */
     color: white;
@@ -62,7 +64,7 @@
     justify-content: center;
     font-size: 14px;
     font-weight: 700;
-    border-radius: 15px;
+    border-radius: 100px;
     color: var(--button-color);
 
     position: relative;
@@ -78,7 +80,7 @@
     width: calc(100% - 8px);
     height: calc(100% - 8px);
     position: relative;
-    border-radius: 15px;
+    border-radius: 10px;
 }
 
 .button::before {
@@ -89,6 +91,20 @@
     bottom: 0;
     left: 0;
     z-index: -1;
-    border-radius: 15px;
+    border-radius: 10px;
     background: linear-gradient(270deg, #216efd 0%, #ff2142 100%);
+}
+
+.selectsWrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.select {
+    width: 45%;
+    border-radius: 10px;
+}
+
+.input {
+    border-radius: 10px;
 }

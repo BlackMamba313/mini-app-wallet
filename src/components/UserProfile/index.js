@@ -1,9 +1,18 @@
 import React from 'react';
-import { useForm } from 'react-hook-form';
+import {useForm} from 'react-hook-form';
 import styles from './UserProfile.module.css';
 
 const UserProfile = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: {errors}
+  } = useForm({
+    defaultValues: {
+      currency: "RUB", // Устанавливаем дефолтное значение для валюты
+      language: "ru" // Устанавливаем дефолтное значение для языка
+    }
+  });
   const onSubmit = data => console.log(data);
 
   return (
@@ -13,22 +22,21 @@ const UserProfile = () => {
         {/*<img src="/path/to/avatar.png" alt="User Avatar" className={styles.userAvatar} />*/}
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className={styles.profileForm}>
-        <input {...register("email")} placeholder="Электронная почта" />
-        <input {...register("phoneNumber")} placeholder="Номер телефона" />
-        <select {...register("currency")}>
-          <option value="">Выберите валюту</option>
-          <option value="USD">USD</option>
-          <option value="EUR">EUR</option>
-          <option value="RUB">RUB</option>
-          {/* Добавить другие валюты по необходимости */}
-        </select>
-        <select {...register("language")}>
-          <option value="">Выберите язык</option>
-          <option value="en">Английский</option>
-          <option value="ru">Русский</option>
-          <option value="es">Испанский</option>
-        </select>
-        {errors.language && <span>Это поле обязательно</span>}
+        <input className={styles.input} {...register("email")} placeholder="Электронная почта"/>
+        <input className={styles.input} {...register("phoneNumber")} placeholder="Номер телефона"/>
+        <div className={styles.selectsWrapper}>
+          <select className={styles.select} {...register("currency")}>
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <option value="RUB">RUB</option>
+            {/* Добавить другие валюты по необходимости */}
+          </select>
+          <select className={styles.select} {...register("language")}>
+            <option value="en">English</option>
+            <option value="ru">Русский</option>
+            <option value="es">Español</option>
+          </select>
+        </div>
 
         <button type="submit" className={styles.saveButton}>Сохранить изменения</button>
         <button type="button" className={styles.verifyButton}>Верифицировать аккаунт</button>
