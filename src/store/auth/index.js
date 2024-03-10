@@ -2,7 +2,6 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import axiosInstance from '../axios';
 
-
 export const auth = createAsyncThunk(
   'auth',
   async (params) => {
@@ -65,7 +64,16 @@ const authSlice = createSlice({
     builder.addCase(transfer.pending, (state) => {
       state.loader = true;
     });
-    builder.addCase(transfer.fulfilled, (state) => {
+    builder.addCase(transfer.fulfilled, (state, {meta, payload}) => {
+      const { token, network } = meta.arg; // Извлекаем token и network из meta
+      const remains = payload?.remains; // Извлекаем остаток баланса после операции
+      // Находим кошелек, который соответствует условиям token и network
+      const walletIndex = state.wallets.findIndex(wallet => wallet.token === token && wallet.network === network);
+      if (walletIndex !== -1) {
+        // Если кошелек найден, обновляем его баланс на остаток после операции
+        state.wallets[walletIndex].balance = remains;
+      }
+
       state.isLoggedIn = true
       state.onSuccess = true;
     });

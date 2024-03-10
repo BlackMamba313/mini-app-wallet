@@ -15,6 +15,7 @@ import useHashing from "./hooks/useHashing";
 import {GetCrypto, getCurrencyRate, GetFiat, setActiveWallet} from "./store/currency";
 import {userFiat} from "./store/currency/selectors";
 import {walletsData} from "./store/auth/selectors";
+import ProfilePage from "./pages/ProfilePage";
 
 function App() {
   const navigate = useNavigate();
@@ -73,6 +74,7 @@ function App() {
         <Route path={'send'} element={<SendPage />}/>
         <Route path={'create'} element={<CreatePage />}/>
         <Route path={'history'} element={<HistoryPage />}/>
+        <Route path={'profile'} element={<ProfilePage />}/>
       </Routes>
     </div>
   );

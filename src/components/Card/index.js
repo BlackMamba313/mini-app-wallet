@@ -6,12 +6,13 @@ import {motion} from 'framer-motion';
 import {userData} from "../../store/auth/selectors";
 import {useSelector} from "react-redux";
 import {currentRate, userFiat} from "../../store/currency/selectors";
+import {useNavigate} from "react-router-dom";
 
 const Card = ({network, address, token, balance}) => {
   const user = useSelector(userData);
   const fiat = useSelector(userFiat);
   const rate = useSelector(currentRate);
-
+  const navigate = useNavigate();
   const cardAnimationStyle = user ? {filter: 'blur(0px)'} : {filter: 'blur(4px)'};
 
   return (
@@ -33,7 +34,7 @@ const Card = ({network, address, token, balance}) => {
           <p className={styles.userName}>Имя пользователя: {user?.userName}</p>
           <div className={styles.cardFooter}>
             <div className={styles.cardFooterBox}>
-              <p className={styles.cardId}><AccountIcon/>ID {user?.id}</p>
+              <p onClick={() => navigate(`/profile`)} className={styles.cardId}><AccountIcon/>ID {user?.id}</p>
             </div>
             <div className={styles.cardFooterBox}>
               <p className={styles.cardStatus}><SecurityIcon/> Не проверено!</p>
