@@ -43,8 +43,7 @@ const SendPanel = () => {
       amount,
       network,
       address,
-      token,
-      checkOnly: false}
+      token}
     const { requestData } = hash(dataForHash);
     dispatch(transfer(requestData));
   };
