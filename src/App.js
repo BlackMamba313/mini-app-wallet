@@ -25,25 +25,6 @@ function App() {
   const fiat = useSelector(userFiat);
 
   useEffect(() => {
-    if (user) {
-      const { requestData } = hash(user);
-      dispatch(auth(requestData));} else {
-      const userMock = {
-        allows_write_to_pm: 1,
-        first_name: "Alex",
-        id: 1062567639,
-        is_premium: 1,
-        language_code: "en",
-        username: "AleksKonstant"
-      }
-      const { requestData } = hash(userMock);
-      dispatch(auth(requestData));
-      console.log('user is not')
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
       const { requestData } = hash();
       dispatch(GetFiat(requestData));
       dispatch(GetCrypto(requestData));
@@ -62,6 +43,25 @@ function App() {
     dispatch(setActiveWallet(wallets[0]))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, wallets, navigate]);
+
+  useEffect(() => {
+    if (user) {
+      const { requestData } = hash(user);
+      dispatch(auth(requestData));} else {
+      const userMock = {
+        allows_write_to_pm: 1,
+        first_name: "Alex",
+        id: 1062567639,
+        is_premium: 1,
+        language_code: "en",
+        username: "AleksKonstant"
+      }
+      const { requestData } = hash(userMock);
+      dispatch(auth(requestData));
+      console.log('user is not')
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="App">
