@@ -20,7 +20,7 @@ function App() {
   const dispatch = useDispatch();
   const wallets  = useSelector(walletsData);
   const { hash } = useHashing();
-  const { user} = useTelegram();
+  const { userTG } = useTelegram();
 
   useEffect(() => {
     wallets &&
@@ -29,8 +29,8 @@ function App() {
   }, [dispatch, wallets, navigate]);
 
   useEffect(() => {
-    if (user) {
-      const { requestData } = hash(user);
+    if (userTG) {
+      const { requestData } = hash(userTG);
       dispatch(auth(requestData));} else {
       const userMock = {
         allows_write_to_pm: 1,
@@ -46,6 +46,7 @@ function App() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
 
   return (
     <div className="App">

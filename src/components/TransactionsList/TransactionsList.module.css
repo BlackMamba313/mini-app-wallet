@@ -1,0 +1,31 @@
+.transactionList {
+    padding: 10px;
+    color: #fff; /* Яркий текст для читаемости на темном фоне */
+}
+
+.transactionCard {
+    display: flex;
+    justify-content: space-between; /* Располагаем элементы на разных концах карточки */
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 8px;
+    transition: background-color 0.3s; /* Плавный переход цвета фона */
+}
+
+.income {
+    background-color: rgba(3, 253, 10, 0.12); /* Приглушенный зеленый для ввода */
+}
+
+.outcome {
+    background-color: rgba(246, 6, 2, 0.15); /* Приглушенный красный для вывода */
+}
+
+.dateTime {
+    font-size: 16px;
+    margin-right: 10px; /* Отступ между датой и суммой */
+}
+
+.amount {
+    font-size: 16px;
+}
