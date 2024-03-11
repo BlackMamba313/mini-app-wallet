@@ -14,6 +14,7 @@ import {auth, setActiveWallet} from "./store/auth";
 import useHashing from "./hooks/useHashing";
 import {walletsData} from "./store/auth/selectors";
 import ProfilePage from "./pages/ProfilePage";
+import ReferralPage from "./pages/ReferralPage";
 
 function App() {
   const navigate = useNavigate();
@@ -59,6 +60,7 @@ function App() {
         <Route path={'create'} element={<CreatePage />}/>
         <Route path={'history'} element={<HistoryPage />}/>
         <Route path={'profile'} element={<ProfilePage />}/>
+        <Route path={'referral'} element={<ReferralPage />}/>
       </Routes>
     </div>
   );

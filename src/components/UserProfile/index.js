@@ -1,8 +1,10 @@
 import React from 'react';
 import {useForm} from 'react-hook-form';
 import styles from './UserProfile.module.css';
+import {useNavigate} from "react-router-dom";
 
 const UserProfile = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -13,6 +15,10 @@ const UserProfile = () => {
     }
   });
   const onSubmit = data => console.log(data);
+
+  const onClickReferral = () => {
+    navigate('/referral')
+  }
 
   return (
     <div className={styles.profileContainer}>
@@ -39,7 +45,7 @@ const UserProfile = () => {
 
         <button type="submit" className={styles.saveButton}>Сохранить изменения</button>
         <button type="button" className={styles.verifyButton}>Верифицировать аккаунт</button>
-        <button type="button" className={styles.partnerButton}>Подписаться на партнерскую программу</button>
+        <button type="button" onClick={onClickReferral} className={styles.partnerButton}>Подписаться на партнерскую программу</button>
       </form>
     </div>
   );
