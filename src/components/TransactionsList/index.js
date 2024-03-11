@@ -21,6 +21,7 @@ const TransactionsList = ({ transactions }) => {
           </div>
           <div className={styles.amount}>
             {transaction.am}
+            {transaction.token}
           </div>
         </div>
       ))}
