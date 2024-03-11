@@ -14,11 +14,11 @@
 }
 
 .income {
-    background-color: rgba(3, 253, 10, 0.12); /* Приглушенный зеленый для ввода */
+    background-color: #216efd; /* Приглушенный зеленый для ввода */
 }
 
 .outcome {
-    background-color: rgba(246, 6, 2, 0.15); /* Приглушенный красный для вывода */
+    background-color: #ff2142; /* Приглушенный красный для вывода */
 }
 
 .dateTime {
