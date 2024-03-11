@@ -3,13 +3,12 @@ import styles from './Header.module.css';
 import ReturnIcon from "../../assets/ReturnIcon";
 import {useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
-import {userFiat, currentRate} from "../../store/currency/selectors";
-import {walletData} from "../../store/currency/selectors";
+import {currentRate, walletData, userData} from "../../store/auth/selectors";
 
 const Header = ({title}) => {
   const activeWallet = useSelector(walletData)
   const navigate = useNavigate();
-  const fiat = useSelector(userFiat);
+  const user = useSelector(userData);
   const rate = useSelector(currentRate);
   return (
     <div>
@@ -22,7 +21,7 @@ const Header = ({title}) => {
       }
       {activeWallet &&
         <div className={styles.cost}>
-          По курсу за 1 {activeWallet.token} {rate} {fiat}
+          По курсу за 1 {activeWallet.token} {rate} {user?.iso}
         </div>
       }
     </div>

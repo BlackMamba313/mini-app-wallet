@@ -5,12 +5,11 @@ import AccountIcon from "../../assets/AccountIcon";
 import {motion} from 'framer-motion';
 import {userData} from "../../store/auth/selectors";
 import {useSelector} from "react-redux";
-import {currentRate, userFiat} from "../../store/currency/selectors";
+import {currentRate} from "../../store/auth/selectors";
 import {useNavigate} from "react-router-dom";
 
 const Card = ({network, address, token, balance}) => {
   const user = useSelector(userData);
-  const fiat = useSelector(userFiat);
   const rate = useSelector(currentRate);
   const navigate = useNavigate();
   const cardAnimationStyle = user ? {filter: 'blur(0px)'} : {filter: 'blur(4px)'};
@@ -24,11 +23,11 @@ const Card = ({network, address, token, balance}) => {
           className={styles.card}>
           <div className={styles.cardHeader}>
             <p className={styles.cardTitle}>Ваш баланс</p>
-            <p className={styles.currency}>{token}/{fiat}</p>
+            <p className={styles.currency}>{token}/{user?.iso}</p>
           </div>
           <p className={styles.mainBalance}>{balance ? parseFloat(balance).toFixed(3) : '0.00'}</p>
           <p className={styles.subBalance}>
-            {(balance*rate).toFixed(2)} {fiat}
+            {(balance*rate).toFixed(2)} {user?.iso}
           </p>
           <p className={styles.walletNumber}>{address}</p>
           <p className={styles.userName}>Имя пользователя: {user?.userName}</p>

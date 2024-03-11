@@ -4,8 +4,7 @@ import styles from './SendPanel.module.css';
 import {transfer} from "../../store/auth";
 import {useDispatch, useSelector} from "react-redux";
 import useHashing from "../../hooks/useHashing";
-import {userData} from "../../store/auth/selectors";
-import {walletData} from "../../store/currency/selectors";
+import {userData, walletData} from "../../store/auth/selectors";
 import SliderButton from "../SliderButton";
 import {useNavigate} from "react-router-dom";
 

@@ -6,7 +6,7 @@ import P2pIcon from "../../assets/icons/P2pIcon";
 import SendIcon from "../../assets/icons/SendIcon";
 import ReseiveIcon from "../../assets/icons/ReseiveIcon";
 import {useSelector} from "react-redux";
-import {walletData} from "../../store/currency/selectors";
+import {walletData} from "../../store/auth/selectors";
 
 const ControlButtons = () => {
   const navigate = useNavigate();

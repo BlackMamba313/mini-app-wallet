@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import styles from './QrCode.module.css';
 import QRCode from "react-qr-code";
-import {walletData} from "../../store/currency/selectors";
+import {walletData} from "../../store/auth/selectors";
 import {useSelector} from "react-redux";
 
 const QrCode = () => {

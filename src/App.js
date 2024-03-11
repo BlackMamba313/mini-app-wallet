@@ -10,10 +10,8 @@ import SendPage from "./pages/SendPage";
 import CreatePage from "./pages/CreatePage";
 import HistoryPage from "./pages/HistoryPage";
 import {useDispatch, useSelector} from "react-redux";
-import {auth} from "./store/auth";
+import {auth, setActiveWallet} from "./store/auth";
 import useHashing from "./hooks/useHashing";
-import {GetCrypto, getCurrencyRate, GetFiat, setActiveWallet} from "./store/currency";
-import {userFiat} from "./store/currency/selectors";
 import {walletsData} from "./store/auth/selectors";
 import ProfilePage from "./pages/ProfilePage";
 
@@ -23,21 +21,6 @@ function App() {
   const wallets  = useSelector(walletsData);
   const { hash } = useHashing();
   const { user} = useTelegram();
-  const fiat = useSelector(userFiat);
-
-  useEffect(() => {
-      const { requestData } = hash();
-      dispatch(GetFiat(requestData));
-      dispatch(GetCrypto(requestData));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    const iso = {iso: fiat}
-    const { requestData } = hash(iso);
-    dispatch(getCurrencyRate(requestData));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   useEffect(() => {
     wallets &&

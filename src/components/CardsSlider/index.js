@@ -4,7 +4,7 @@ import { bindKeyboard } from 'react-swipeable-views-utils';
 import Card from "../Card";
 import { useDispatch, useSelector } from "react-redux";
 import { walletsData } from "../../store/auth/selectors";
-import { setActiveWallet } from "../../store/currency";
+import { setActiveWallet } from "../../store/auth";
 
 const EnhancedSwipeableViews = bindKeyboard(SwipeableViews);
 

@@ -18,9 +18,47 @@ export const transfer = createAsyncThunk(
   }
 );
 
+export const getCurrencyRate = createAsyncThunk(
+  'getCurrencyRate',
+  async (params) => {
+    const {data} = await axiosInstance.post('getrate', params);
+    return data;
+  }
+);
+
+// export const ChangeCurrentFiat = createAsyncThunk(
+//   'ChangeCurrentFiat',
+//   async (params) => {
+//     const {data} = await axiosInstance.post('authuser', params);
+//     return data;
+//   }
+// );
+
+export const GetFiat = createAsyncThunk(
+  'GetFiat',
+  async (params) => {
+    const {data} = await axiosInstance.post('getfiat', params);
+    return data;
+  }
+);
+
+export const GetCrypto = createAsyncThunk(
+  'GetCrypto',
+  async (params) => {
+    const {data} = await axiosInstance.post('getcrypto', params);
+    return data;
+  }
+);
+
 const initialState = {
   user: null,
   wallets:  null,
+  currentWallet: null,
+  currentCripto: null,
+  currentRate: null,
+  rate: null,
+  fiat: null,
+  crypto: null,
   isAuthenticated: false,
   isLoggedIn: false,
   onSuccess: null,
@@ -32,7 +70,11 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    // Редьюсер для установки активного кошелька
+    setActiveWallet: (state, action) => {
+      state.currentWallet = action.payload;
+      if (state.rate)
+        state.currentRate = parseFloat(( 1 / state.rate[`${state.user.iso}\\${action.payload.token}`]).toFixed(2))
+    },
   },
   extraReducers: (builder) => {
     //auth
@@ -53,6 +95,9 @@ const authSlice = createSlice({
           }))
         );
       }
+      state.rate = payload.rate
+      state.fiat = payload.fiat
+      state.crypto = payload.coin
       state.isLoggedIn = true
       state.onSuccess = true;
     });
@@ -82,7 +127,46 @@ const authSlice = createSlice({
       state.loader = false; // Останавливаем индикатор загрузки
       state.error = action.error.message;
     });
+    //getCurrencyRate
+    builder.addCase(getCurrencyRate.pending, (state) => {
+      state.loader = true;
+    });
+    builder.addCase(getCurrencyRate.fulfilled, (state, {payload}) => {
+      state.rate = payload;
+      state.onSuccess = true;
+    });
+    builder.addCase(getCurrencyRate.rejected, (state, action) => {
+      state.loader = false; // Останавливаем индикатор загрузки
+      state.error = action.error.message;
+    });
+    //GetFiat
+    builder.addCase(GetFiat.pending, (state) => {
+      state.loader = true;
+    });
+    builder.addCase(GetFiat.fulfilled, (state, {payload}) => {
+      state.fiat = payload;
+      state.onSuccess = true;
+    });
+    builder.addCase(GetFiat.rejected, (state, action) => {
+      state.loader = false; // Останавливаем индикатор загрузки
+      state.error = action.error.message;
+    });
+    //GetCrypto
+    builder.addCase(GetCrypto.pending, (state) => {
+      state.loader = true;
+    });
+    builder.addCase(GetCrypto.fulfilled, (state, {payload}) => {
+      state.crypto = payload;
+      state.onSuccess = true;
+    });
+    builder.addCase(GetCrypto.rejected, (state, action) => {
+      state.loader = false; // Останавливаем индикатор загрузки
+      state.error = action.error.message;
+    });
   },
 });
 
+export const {
+  setActiveWallet,
+} = authSlice.actions;
 export default authSlice.reducer;
