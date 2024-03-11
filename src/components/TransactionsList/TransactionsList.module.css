@@ -10,15 +10,16 @@
     margin-bottom: 15px;
     padding: 10px;
     border-radius: 8px;
+    background-color: #373B38;
     transition: background-color 0.3s; /* Плавный переход цвета фона */
 }
 
 .income {
-    background-color: #216efd; /* Приглушенный зеленый для ввода */
+    color: #66CDAA; /* Приглушенный зеленый для ввода */
 }
 
 .outcome {
-    background-color: #ff2142; /* Приглушенный красный для вывода */
+    color: #CD5C5C; /* Приглушенный красный для вывода */
 }
 
 .dateTime {
