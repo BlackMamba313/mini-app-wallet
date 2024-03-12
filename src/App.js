@@ -21,8 +21,8 @@ function App() {
   const dispatch = useDispatch();
   const wallets  = useSelector(walletsData);
   const { hash } = useHashing();
-  const { userTG, tg } = useTelegram();
-  console.log('>>>>>>>>>>>>>>>>>' ,tg)
+  const { userTG } = useTelegram();
+  // console.log('>>>>>>>>>>>>>>>>>' ,tg)
   useEffect(() => {
     wallets &&
     dispatch(setActiveWallet(wallets[0]))
@@ -35,11 +35,11 @@ function App() {
       dispatch(auth(requestData));} else {
       const userMock = {
         allows_write_to_pm: 1,
-        first_name: "Alegtx",
+        first_name: "Alex",
         id: 1062564563123,
         is_premium: 1,
         language_code: "en",
-        username: "AleksKonstrgreant"
+        username: "AleksKonstant"
       }
       const { requestData } = hash(userMock);
       dispatch(auth(requestData));
