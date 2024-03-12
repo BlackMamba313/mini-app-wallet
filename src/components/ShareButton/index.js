@@ -1,20 +1,19 @@
 import React from 'react';
 import styles from './ShareButton.module.css';
 
-
-const ShareButton = ({ address }) => {
-  const handleShare = () => {
-    // Проверка, что мы находимся в Telegram Web App
-    if (window.Telegram.WebApp) {
-      // С помощью Telegram Web App API отправляем сообщение
-      window.Telegram.WebApp.share(`Мой адрес кошелька: ${address}`);
-    } else {
-      console.log('Эта функция доступна только в Telegram Web App.');
-    }
+const ShareButton = ({ amount, activeWallet }) => {
+  console.log(activeWallet)
+  const handleShare = async () => {
+      // Создаем ссылку для отправки сообщения в Telegram
+      const telegramUrl =
+        `https://t.me/share/url?url=${encodeURIComponent("t.me/LikeWalletPay_bot/LikePayWallet")}&text=${encodeURIComponent(
+          `Мой адрес кошелька: ${activeWallet.address}.
+           Запрошенная сумма: ${amount} ${activeWallet.token} в сети ${activeWallet.network}`)}`;
+      window.open(telegramUrl, '_blank');
   };
 
   return (
-    <button className={styles.btn} onClick={handleShare}>Поделиться в Telegram</button>
+    <button className={styles.bnt} onClick={handleShare}></button>
   );
 };
 

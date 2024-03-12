@@ -7,6 +7,7 @@ import ShareButton from "../ShareButton";
 
 const QrCode = () => {
   const [qrValue, setQrValue] = useState('');
+  const [amount, setAmount] = useState('');
   const activeWallet = useSelector(walletData)
 
   const handleCopy = async () => {
@@ -22,6 +23,10 @@ const QrCode = () => {
     setQrValue(activeWallet?.address)
   }, [activeWallet]);
 
+  const handleAmountChange = (e) => {
+    setAmount(e.target.value);
+  };
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.borderQr}>
@@ -29,12 +34,8 @@ const QrCode = () => {
           <QRCode size={210} value={qrValue}/>
         </div>
       </div>
-      <p className={styles.walletAddress}>{activeWallet?.address}</p>
-      <div className={styles.copyBtns}>
-        <div onClick={handleCopy}>
-          <p className={styles.btnText}>Скопировать адрес</p>
-        </div>
-        <ShareButton address={activeWallet?.address}/>
+      <div onClick={handleCopy}>
+        <p  className={styles.walletAddress}>{activeWallet?.address}</p>
       </div>
       <p className={styles.text}>Запросить перевод у контакта </p>
       <div className={styles.inputWrapper}>
@@ -43,8 +44,10 @@ const QrCode = () => {
           inputMode="decimal"
           pattern="[0-9]*[.,]?[0-9]*"
           placeholder='Введите сумму'
-          className={styles.input}/>
-        <div className={styles.inputBtn}>BTN</div>
+          className={styles.input}
+          value={amount}
+          onChange={handleAmountChange} />
+        <ShareButton amount={amount} activeWallet={activeWallet}/>
       </div>
     </div>
   );

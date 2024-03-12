@@ -21,8 +21,8 @@ function App() {
   const dispatch = useDispatch();
   const wallets  = useSelector(walletsData);
   const { hash } = useHashing();
-  const { userTG, tg } = useTelegram();
-  console.log('>>>>>>>>>>>>>>>>>' ,tg)
+  const { userTG } = useTelegram();
+
   useEffect(() => {
     wallets &&
     dispatch(setActiveWallet(wallets[0]))
