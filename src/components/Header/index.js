@@ -21,7 +21,7 @@ const Header = ({title}) => {
       }
       {activeWallet &&
         <div className={styles.cost}>
-          По курсу за 1 {activeWallet.token} {rate} {user?.iso}
+          По курсу за 1<span className={styles.currency}> {activeWallet.token} </span>{rate} {user?.iso}
         </div>
       }
     </div>

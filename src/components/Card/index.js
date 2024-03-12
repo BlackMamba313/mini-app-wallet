@@ -32,8 +32,9 @@ const Card = ({network, address, token, balance}) => {
           <p className={styles.walletNumber}>{address}</p>
           <p className={styles.userName}>Имя пользователя: {user?.userName}</p>
           <div className={styles.cardFooter}>
-            <div className={styles.cardFooterBox}>
-              <p onClick={() => navigate(`/profile`)} className={styles.cardId}><AccountIcon/>ID {user?.id}</p>
+            <div onClick={() => navigate(`/profile`)} className={styles.cardFooterBox}>
+              <AccountIcon/>
+              <p  className={styles.cardId}>ID {user?.id}</p>
             </div>
             <div className={styles.cardFooterBox}>
               <p className={styles.cardStatus}><SecurityIcon/> Не проверено!</p>

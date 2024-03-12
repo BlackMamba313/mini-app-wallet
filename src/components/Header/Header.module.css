@@ -24,3 +24,7 @@
     position: absolute;
     left: 20px;
 }
+.currency {
+    margin: 0 4px 0 2px;
+    color: var(--currency-color);
+}

@@ -12,7 +12,7 @@ import HistoryPage from "./pages/HistoryPage";
 import {useDispatch, useSelector} from "react-redux";
 import {auth, setActiveWallet} from "./store/auth";
 import useHashing from "./hooks/useHashing";
-import {walletsData} from "./store/auth/selectors";
+import {walletData, walletsData} from "./store/auth/selectors";
 import ProfilePage from "./pages/ProfilePage";
 import ReferralPage from "./pages/ReferralPage";
 
@@ -20,6 +20,7 @@ function App() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const wallets  = useSelector(walletsData);
+  const wallet  = useSelector(walletData);
   const { hash } = useHashing();
   const { userTG } = useTelegram();
   // console.log('>>>>>>>>>>>>>>>>>' ,tg)
@@ -36,7 +37,7 @@ function App() {
       const userMock = {
         allows_write_to_pm: 1,
         first_name: "Alex",
-        id: 1062564563123,
+        id: 1062567639,
         is_premium: 1,
         language_code: "en",
         username: "AleksKonstant"
@@ -48,6 +49,21 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  function changeTheme(currency) {
+    let root = document.documentElement;
+    if (currency === 'TRX') {
+      root.style.setProperty('--currency-color', '#d21d25');
+    } else if (currency === 'USDT') {
+      root.style.setProperty('--currency-color', '#52ae94');
+    }
+  }
+
+  useEffect(() => {
+    if(wallet?.token) {
+      changeTheme(wallet.token)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [wallet]);
 
   return (
     <div className="App">

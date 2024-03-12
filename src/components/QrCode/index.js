@@ -29,26 +29,22 @@ const QrCode = () => {
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.borderQr}>
-        <div className={styles.wrapperQr}>
-          <QRCode size={210} value={qrValue}/>
-        </div>
+      <div className={styles.wrapperQr}>
+        <QRCode bgColor={'#1f2226'} size={210} value={qrValue}/>
       </div>
       <div onClick={handleCopy}>
-        <p  className={styles.walletAddress}>{activeWallet?.address}</p>
+        <p className={styles.walletAddress}>{activeWallet?.address}</p>
       </div>
       <p className={styles.text}>Запросить перевод у контакта </p>
-      <div className={styles.inputWrapper}>
-        <input
-          type="text"
-          inputMode="decimal"
-          pattern="[0-9]*[.,]?[0-9]*"
-          placeholder='Введите сумму'
-          className={styles.input}
-          value={amount}
-          onChange={handleAmountChange} />
-        <ShareButton amount={amount} activeWallet={activeWallet}/>
-      </div>
+      <input
+        type="text"
+        inputMode="decimal"
+        pattern="[0-9]*[.,]?[0-9]*"
+        placeholder='Введите сумму'
+        className={styles.input}
+        value={amount}
+        onChange={handleAmountChange}/>
+      <ShareButton amount={amount} activeWallet={activeWallet}/>
     </div>
   );
 }

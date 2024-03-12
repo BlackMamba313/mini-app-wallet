@@ -4,25 +4,22 @@
 }
 
 .transactionCard {
-    display: flex;
-    justify-content: space-between; /* Располагаем элементы на разных концах карточки */
-    align-items: center;
     margin-bottom: 15px;
-    padding: 10px;
+    padding: 5px 10px;
     border-radius: 8px;
-    background-color: #373B38;
+    background-color: var(--card-color);
+    color: #3a454e;
     transition: background-color 0.3s; /* Плавный переход цвета фона */
 }
 
-.income {
-    color: #66CDAA; /* Приглушенный зеленый для ввода */
-}
-
-.outcome {
-    color: #CD5C5C; /* Приглушенный красный для вывода */
+.cardRow {
+    display: flex;
+    justify-content: space-between; /* Располагаем элементы на разных концах карточки */
+    align-items: center;
 }
 
 .dateTime {
+    color: #3a454e; /* Приглушенный зеленый для ввода */
     font-size: 16px;
     margin-right: 10px; /* Отступ между датой и суммой */
 }
