@@ -1,12 +1,13 @@
 import React from 'react';
 import styles from './ShareButton.module.css';
 
+
 const ShareButton = ({ address }) => {
   const handleShare = () => {
     // Проверка, что мы находимся в Telegram Web App
     if (window.Telegram.WebApp) {
       // С помощью Telegram Web App API отправляем сообщение
-      Telegram.WebApp.share(`Мой адрес кошелька: ${address}`);
+      window.Telegram.WebApp.share(`Мой адрес кошелька: ${address}`);
     } else {
       console.log('Эта функция доступна только в Telegram Web App.');
     }
