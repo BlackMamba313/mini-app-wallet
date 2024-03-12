@@ -8,23 +8,26 @@ const ShareButton = ({ address }) => {
         await navigator.share({
           title: 'Поделиться адресом',
           text: `Мой адрес кошелька: ${address}`,
-          url: document.location.href, // Это пример, замените на URL, который хотите поделиться
+          // url: document.location.href, // Можно опустить, если хотите поделиться только текстом
         });
+        console.log('Содержимое успешно поделено.');
       } catch (error) {
         console.error('Произошла ошибка при попытке поделиться: ', error);
       }
     } else {
-      // Альтернативная логика для браузеров, не поддерживающих Web Share API
-      console.log('Web Share API не поддерживается в этом браузере.');
+      // Создаем ссылку для отправки сообщения в Telegram
+      const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(document.location.href)}&text=${encodeURIComponent(`Мой адрес кошелька: ${address}`)}`;
+      window.open(telegramUrl, '_blank');
     }
   };
 
   return (
-    <button className={styles.bnt} onClick={handleShare}>Поделиться</button>
+    <button className={styles.btn} onClick={handleShare}>Поделиться</button>
   );
 };
 
-export default ShareButton
+export default ShareButton;
+
 
 
 

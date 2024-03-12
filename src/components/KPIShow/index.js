@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './KPIShow.module.css';
+import CircularProgressBar from "../CircularProgressBar";
 
 const KPIShow = () => {
 
@@ -18,19 +19,13 @@ const KPIShow = () => {
         Total balance<br />
         <span className={styles.statValue}>0 usdt</span>
       </div>
-      {/* Круговая диаграмма KPI здесь */}
-      <div className={styles.kpiCircle}>
-        <div className={styles.kpiText}>
-          YOU<br />
-          KPI 25%
-        </div>
-      </div>
+      <CircularProgressBar value={25}/>
 
       <div
         className={styles.shareButton}
         onClick={shareProject}
       >
-        Поделиться проектом
+        Share Project
       </div>
     </div>
   );

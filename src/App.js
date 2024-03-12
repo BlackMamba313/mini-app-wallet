@@ -35,11 +35,11 @@ function App() {
       dispatch(auth(requestData));} else {
       const userMock = {
         allows_write_to_pm: 1,
-        first_name: "Alex",
-        id: 1062567639,
+        first_name: "Alegtx",
+        id: 1062564563123,
         is_premium: 1,
         language_code: "en",
-        username: "AleksKonstant"
+        username: "AleksKonstrgreant"
       }
       const { requestData } = hash(userMock);
       dispatch(auth(requestData));
