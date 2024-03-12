@@ -12,10 +12,10 @@ const ControlButtons = () => {
       {activeWallet &&
         <div className={styles.buttonWrapper}>
           <div className={styles.button} onClick={() => navigate(`/receive`)} style={{marginTop: 7}}>
-            {/*<ReseiveIcon width={42} height={42}/>*/}Отправить
+            {/*<ReseiveIcon width={42} height={42}/>*/}Получить
           </div>
           <div className={styles.button} onClick={() => navigate(`/send`)} style={{marginTop: 7}}>
-            {/*<SendIcon width={42} height={42}/>*/}Получить
+            {/*<SendIcon width={42} height={42}/>*/}Отправить
           </div>
           {/*<div onClick={() => navigate(`/history`)}>*/}
           {/*  <P2pIcon width={57} height={57}/>*/}

@@ -14,16 +14,17 @@
     cursor: pointer;
     width: 45%;
     height: 45px;
-    border: 2px solid rgba(33, 110, 253, 0.67);
+    border: 1px solid rgba(183, 184, 187, 0.67);
     border-radius: 55px;
     display: flex;
     justify-content: center;
     align-items: center;
     font-weight: bold;
+    background-color: #2c2b2b;
 }
 
 .button:hover, .button:focus, .button:active {
-    background-color: #9ecfd7;
+    background-color: #4b4b4b;
 }
 
 .centr {
