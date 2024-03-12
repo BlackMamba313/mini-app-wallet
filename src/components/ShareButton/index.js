@@ -13,7 +13,7 @@ const ShareButton = ({ amount, activeWallet }) => {
   };
 
   return (
-    <button className={styles.bnt} onClick={handleShare}></button>
+    <div className={styles.button} onClick={handleShare}> Отправить </div>
   );
 };
 
