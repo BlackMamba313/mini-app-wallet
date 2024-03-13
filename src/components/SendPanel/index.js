@@ -19,9 +19,14 @@ const SendPanel = () => {
   const [transferData, setTransferData] = useState(null); // Состояние для хранения данных перевода
   const [isCompleted, setIsCompleted] = useState(false); // Состояние завершения
   const [isConfirming, setIsConfirming] = useState(false); // Состояние для отслеживания режима подтверждения перевода
+  const [isScannerOpen, setIsScannerOpen] = useState(false);
+  const [QRdata, setQRdata] = useState('');
+
   const handleScan = data => {
     console.log('QR код содержит:', data);
-    // Действия после сканирования, например, переход на другую страницу
+    setQRdata(data)
+    setIsScannerOpen(false); // Закрываем сканер после сканирования
+    // Здесь можно обработать данные QR-кода
   };
 
   const onSubmit = async data =>  {
@@ -84,6 +89,7 @@ const SendPanel = () => {
 
   return (
     <form className={styles.wrapper} onSubmit={handleSubmit(onSubmit)}>
+      <p>{QRdata}</p>
 
       <input
         {...register("address", { required: "Это поле обязательно" })} // Регистрация поля с валидацией на обязательность
@@ -108,7 +114,13 @@ const SendPanel = () => {
       />
       {errors.amount && <span>{errors.amount.message}</span>}
       <button type="submit" className={styles.sendButton}>Отправить</button>
-      <QRScanner onScan={handleScan} />
+      <div>
+        {isScannerOpen ? (
+          <QRScanner onScan={handleScan} width="400px" height="400px" />
+        ) : (
+          <button onClick={() => setIsScannerOpen(true)}>Сканировать QR код</button>
+        )}
+      </div>
     </form>
   );
 };
