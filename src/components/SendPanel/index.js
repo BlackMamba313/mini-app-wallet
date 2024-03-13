@@ -7,6 +7,7 @@ import useHashing from "../../hooks/useHashing";
 import {userData, walletData} from "../../store/auth/selectors";
 import SliderButton from "../SliderButton";
 import {useNavigate} from "react-router-dom";
+import QRScanner from "../QRScanner";
 
 const SendPanel = () => {
   const navigate = useNavigate();
@@ -18,6 +19,10 @@ const SendPanel = () => {
   const [transferData, setTransferData] = useState(null); // Состояние для хранения данных перевода
   const [isCompleted, setIsCompleted] = useState(false); // Состояние завершения
   const [isConfirming, setIsConfirming] = useState(false); // Состояние для отслеживания режима подтверждения перевода
+  const handleScan = data => {
+    console.log('QR код содержит:', data);
+    // Действия после сканирования, например, переход на другую страницу
+  };
 
   const onSubmit = async data =>  {
     const dataForHash = {...data, id, token, network, checkOnly: true}
@@ -103,6 +108,7 @@ const SendPanel = () => {
       />
       {errors.amount && <span>{errors.amount.message}</span>}
       <button type="submit" className={styles.sendButton}>Отправить</button>
+      <QRScanner onScan={handleScan} />
     </form>
   );
 };
