@@ -8,7 +8,7 @@ const SendPage = () => {
   return (
     <>
       <Header title={'Отправить'}/>
-      {isScannerOpen && <CardsSlider/>}
+      {!isScannerOpen && <CardsSlider/>}
       <SendPanel
         isScannerOpen={isScannerOpen}
         setIsScannerOpen={setIsScannerOpen}
