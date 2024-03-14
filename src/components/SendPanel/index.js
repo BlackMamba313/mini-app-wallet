@@ -37,7 +37,7 @@ const SendPanel = ({isScannerOpen, setIsScannerOpen}) => {
   // Функции onSubmit, onConfirm и т.д...
 
   const handleScan = data => {
-    console.log('QR код содержит:', data);
+    alert( data);
     setQRdata(data)
     setIsScannerOpen(false); // Закрываем сканер после сканирования
     // Здесь можно обработать данные QR-кода
