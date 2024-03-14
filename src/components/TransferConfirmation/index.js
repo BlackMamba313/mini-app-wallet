@@ -1,12 +1,40 @@
 import React, {useState} from 'react';
 import styles from './TransferConfirmation.module.css';
 import SliderButton from "../SliderButton";
+import {useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import useHashing from "../../hooks/useHashing";
+import {transfer} from "../../store/auth";
 
 const TransferConfirmation = ({ transferData }) => {
   const [isSend, setIsSend] = useState(false);
-  const onConfirm = () => {
-    setIsSend(true)
-  }
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { hash } = useHashing();
+
+  const onConfirm = async  () =>  {
+    const {network, id, address, amount, token} = transferData.meta.arg
+    const dataForHash = {
+      id,
+      amount,
+      network,
+      address,
+      token}
+    const { requestData } = hash(dataForHash);
+    try {
+      const response = await dispatch(transfer(requestData));
+      if (response.type === 'transfer/fulfilled') {
+        setIsSend(true)
+        setTimeout(() => {
+          navigate(`/`); // Редирект на главную страницу
+        }, 1000);
+      } else {
+        console.error("Ошибка или недостаточно данных для перевода");
+      }
+    } catch (error) {
+      console.error("Ошибка выполнения запроса на перевод", error);
+    }
+  };
 
   return (
     <div className={styles.wrapper}>

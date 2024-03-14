@@ -18,10 +18,16 @@ const QrCode = () => {
     }
   };
 
-
+  console.log(qrValue)
   useEffect(() => {
-    setQrValue(activeWallet?.address)
-  }, [activeWallet]);
+    // Обновляем qrValue при изменении активного кошелька или суммы
+    setQrValue(JSON.stringify({
+      address: activeWallet?.address,
+      network: activeWallet?.network,
+      token: activeWallet?.token,
+      amount: amount // Добавляем amount в объект
+    }));
+  }, [activeWallet, amount]);
 
   const handleAmountChange = (e) => {
     setAmount(e.target.value);
@@ -29,9 +35,6 @@ const QrCode = () => {
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.wrapperQr}>
-        <QRCode bgColor={'#1f2226'} size={210} value={qrValue}/>
-      </div>
       <div onClick={handleCopy}>
         <p className={styles.walletAddress}>{activeWallet?.address}</p>
       </div>
@@ -45,6 +48,9 @@ const QrCode = () => {
         value={amount}
         onChange={handleAmountChange}/>
       <ShareButton amount={amount} activeWallet={activeWallet}/>
+      {amount &&<div className={styles.wrapperQr}>
+          < QRCode bgColor={'#1f2226'} size={210} value={qrValue}/>
+      </div>}
     </div>
   );
 }
