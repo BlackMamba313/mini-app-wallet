@@ -5,7 +5,7 @@ import SliderButton from "../SliderButton";
 const TransferConfirmation = ({ transferData }) => {
   const [isSend, setIsSend] = useState(false);
   const onConfirm = () => {
-
+    setIsSend(true)
   }
 
   return (
