@@ -1,14 +1,18 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Header from "../components/Header";
 import SendPanel from "../components/SendPanel";
 import CardsSlider from "../components/CardsSlider";
 
 const SendPage = () => {
+  const [isScannerOpen, setIsScannerOpen] = useState(false);
   return (
     <>
       <Header title={'Отправить'}/>
-      <CardsSlider/>
-      <SendPanel/>
+      {isScannerOpen && <CardsSlider/>}
+      <SendPanel
+        isScannerOpen={isScannerOpen}
+        setIsScannerOpen={setIsScannerOpen}
+      />
     </>
   );
 };

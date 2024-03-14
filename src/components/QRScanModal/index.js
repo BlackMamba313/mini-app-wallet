@@ -1,7 +1,8 @@
-import React, { useEffect, useRef } from 'react';
+import React, {useEffect, useRef} from 'react';
 import jsQR from 'jsqr';
+import styles from './QRScanModal.module.css';
 
-const QRScanner = ({ onScan }) => {
+const QRScanModal = ({ isOpen, onScan }) => {
   const videoRef = useRef(null);
   const canvasRef = useRef(document.createElement('canvas'));
 
@@ -9,7 +10,7 @@ const QRScanner = ({ onScan }) => {
     // Функция для запроса доступа к камере и запуска видеопотока
     const startVideo = async () => {
       try {
-        const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
+        const stream = await navigator.mediaDevices.getUserMedia({video: {facingMode: 'environment'}});
         if (videoRef.current) {
           videoRef.current.srcObject = stream;
           videoRef.current.play();
@@ -20,7 +21,7 @@ const QRScanner = ({ onScan }) => {
       }
     };
 
-    // Функция для сканирования QR-кода из видеопотока
+    // Функция для сканирования QR-кода из видео потока
     const scanQRCode = () => {
       const canvasElement = canvasRef.current;
       const context = canvasElement.getContext('2d');
@@ -52,12 +53,14 @@ const QRScanner = ({ onScan }) => {
   }, [onScan]);
 
   return (
-    <video
-      ref={videoRef}
-      style={{ width: '100%' }}
-      playsInline
-    />
+    isOpen && <div className={styles.wrapper}>
+      <video
+        className={styles.scaner}
+        ref={videoRef}
+        playsInline
+      />
+    </div>
   );
 };
 
-export default QRScanner;
+export default QRScanModal;

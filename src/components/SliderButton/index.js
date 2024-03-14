@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import styles from './SliderButton.module.css';
 
-const SliderButton = ({ onComplete, isCompleted }) => {
+const SliderButton = ({ isSend, onConfirm }) => {
   const [sliderWidth, setSliderWidth] = useState(0);
   const controls = useAnimation();
   const containerRef = useRef(null);
@@ -23,7 +23,7 @@ const SliderButton = ({ onComplete, isCompleted }) => {
 
   const handleDragEnd = async (event, info) => {
     if (info.point.x >= sliderWidth) {
-      onComplete();
+      onConfirm();
     } else {
       await controls.start({
         x: 0,
@@ -34,7 +34,7 @@ const SliderButton = ({ onComplete, isCompleted }) => {
 
   return (
     <div className={styles.sliderContainer} ref={containerRef}>
-      {isCompleted ? (
+      {isSend ? (
         // Отображение затенённого слайдера с надписью при завершении
         <motion.div className={styles.completionOverlay}
                     initial={{ opacity: 0 }}
