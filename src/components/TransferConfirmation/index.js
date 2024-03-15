@@ -11,7 +11,7 @@ const TransferConfirmation = ({ transferData }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { hash } = useHashing();
-
+  console.log(transferData)
   const onConfirm = async  () =>  {
     const {network, id, address, amount, token} = transferData.meta.arg
     const dataForHash = {
@@ -40,7 +40,9 @@ const TransferConfirmation = ({ transferData }) => {
     <div className={styles.wrapper}>
       <div className={styles.info}>
         <p className={styles.text}>Детали перевода:</p>
-        <p>Итого перевод будет стоить: {Number(transferData.payload.commision) + Number(transferData.meta.arg.amount)}</p>
+        <p>Перевод в сети {transferData.meta.arg.network}</p>
+        <p>Переводим {Number(transferData.meta.arg.amount)} {transferData.meta.arg.token}</p>
+        <p>Комиссия за перевод: {transferData.payload.commision} {transferData.meta.arg.token}</p>
         <p>Адрес перевода: </p>
         <p>{transferData.meta.arg.address}</p>
       </div>

@@ -2,12 +2,11 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import styles from './TransferForm.module.css';
 
-const TransferForm = ({ onSubmit, QRdata }) => {
+const TransferForm = ({ onSubmit }) => {
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   return (
     <form className={styles.wrapper} onSubmit={handleSubmit(onSubmit)}>
-      <p>{QRdata}</p>
       <input
         {...register("address", { required: "Это поле обязательно" })}
         type="text"

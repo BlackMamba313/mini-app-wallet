@@ -13,7 +13,6 @@ const SendPanel = ({isScannerOpen, setIsScannerOpen}) => {
   const { hash } = useHashing();
   // Хуки, состояния, функции обработки...
   const [transferData, setTransferData] = useState(null);
-  const [QRdata, setQRdata] = useState('');
   const { id }  = useSelector(userData) || {};
   const {token, network}  = useSelector(walletData) || {};
   // Остальные состояния и логика...
@@ -36,11 +35,21 @@ const SendPanel = ({isScannerOpen, setIsScannerOpen}) => {
   };
   // Функции onSubmit, onConfirm и т.д...
 
-  const handleScan = data => {
-    alert(data);
-    setQRdata(data)
+  const handleScan = async data => {
+    const { requestData } = hash(data);
     setIsScannerOpen(false); // Закрываем сканер после сканирования
-    // Здесь можно обработать данные QR-кода
+    try {
+      const response = await dispatch(transfer(requestData));
+      if (response.type === 'transfer/fulfilled') {
+        setTransferData(response); // Сохраняем данные о переводе
+        // Переходим в режим подтверждения
+      } else {
+        // Обработка ошибки или недостаточной информации для перевода
+        console.error("Ошибка или недостаточно данных для перевода");
+      }
+    } catch (error) {
+      console.error("Ошибка выполнения запроса на перевод", error);
+    }
   };
 
   if (transferData) {
@@ -52,7 +61,7 @@ const SendPanel = ({isScannerOpen, setIsScannerOpen}) => {
     <>
       {isScannerOpen ?  <QRScanModal onScan={handleScan} /> :
         <><div className={styles.scanBtn} onClick={() => setIsScannerOpen(true)}>Сканировать QR код</div>
-      <TransferForm onSubmit={onSubmit} QRdata={QRdata}/></>}
+      <TransferForm onSubmit={onSubmit}/></>}
 
     </>
   );
