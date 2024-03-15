@@ -2,7 +2,7 @@ import React, {useEffect, useRef} from 'react';
 import jsQR from 'jsqr';
 import styles from './QRScanModal.module.css';
 
-const QRScanModal = ({ isOpen, onScan }) => {
+const QRScanModal = ({ onScan }) => {
   const videoRef = useRef(null);
   const canvasRef = useRef(document.createElement('canvas'));
 
@@ -53,7 +53,7 @@ const QRScanModal = ({ isOpen, onScan }) => {
   }, [onScan]);
 
   return (
-    isOpen && <div className={styles.wrapper}>
+    <div className={styles.wrapper}>
       <video
         className={styles.scaner}
         ref={videoRef}

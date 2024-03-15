@@ -50,9 +50,10 @@ const SendPanel = ({isScannerOpen, setIsScannerOpen}) => {
   // Возвращение TransferForm и QRScanModal, если не в режиме подтверждения
   return (
     <>
-      {!isScannerOpen && <><div className={styles.scanBtn} onClick={() => setIsScannerOpen(true)}>Сканировать QR код</div>
+      {isScannerOpen ?  <QRScanModal isOpen={isScannerOpen} onScan={handleScan} /> :
+        <><div className={styles.scanBtn} onClick={() => setIsScannerOpen(true)}>Сканировать QR код</div>
       <TransferForm onSubmit={onSubmit} QRdata={QRdata}/></>}
-      <QRScanModal isOpen={isScannerOpen} onScan={handleScan} />
+
     </>
   );
 };
