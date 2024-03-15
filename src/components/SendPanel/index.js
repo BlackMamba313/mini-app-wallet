@@ -37,7 +37,7 @@ const SendPanel = ({isScannerOpen, setIsScannerOpen}) => {
 
   const handleScan = async data => {
     const parsedData = JSON.parse(data);
-    const { requestData } = hash(parsedData);
+    const { requestData } = hash({...parsedData, id, checkOnly: true});
     setIsScannerOpen(false); // Закрываем сканер после сканирования
     try {
       const response = await dispatch(transfer(requestData));
