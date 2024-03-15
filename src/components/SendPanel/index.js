@@ -42,8 +42,7 @@ const SendPanel = ({isScannerOpen, setIsScannerOpen}) => {
     try {
       const response = await dispatch(transfer(requestData));
       if (response.type === 'transfer/fulfilled') {
-        setTransferData(response); // Сохраняем данные о переводе
-        // Переходим в режим подтверждения
+        setTransferData(response);
       } else {
         // Обработка ошибки или недостаточной информации для перевода
         console.error("Ошибка или недостаточно данных для перевода");

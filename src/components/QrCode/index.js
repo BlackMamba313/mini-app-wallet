@@ -49,7 +49,7 @@ const QrCode = () => {
         onChange={handleAmountChange}/>
       <ShareButton amount={amount} activeWallet={activeWallet}/>
       {amount &&<div className={styles.wrapperQr}>
-          < QRCode bgColor={'#1f2226'} size={210} value={qrValue}/>
+          < QRCode  bgColor={'#d2d3d5'} size={210} value={qrValue}/>
       </div>}
     </div>
   );
