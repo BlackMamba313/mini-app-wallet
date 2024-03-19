@@ -16,10 +16,6 @@ const UserProfile = () => {
   });
   const onSubmit = data => console.log(data);
 
-  const onClickReferral = () => {
-    navigate('/referral')
-  }
-
   return (
     <div className={styles.profileContainer}>
       <div className={styles.avatarSection}>
@@ -45,7 +41,7 @@ const UserProfile = () => {
 
         <button type="submit" className={styles.saveButton}>Сохранить изменения</button>
         <button type="button" className={styles.verifyButton}>Верифицировать аккаунт</button>
-        <button type="button" onClick={onClickReferral} className={styles.partnerButton}>Подписаться на партнерскую программу</button>
+        <button type="button" onClick={() => navigate(`/referral`)} className={styles.partnerButton}>Подписаться на партнерскую программу</button>
       </form>
     </div>
   );
