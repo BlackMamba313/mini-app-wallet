@@ -4,9 +4,11 @@ import CircularProgressBar from "../CircularProgressBar";
 import {refStatData, userData} from "../../store/auth/selectors";
 import {useDispatch, useSelector} from "react-redux";
 import {GetStat} from "../../store/auth";
+import useHashing from "../../hooks/useHashing";
 
 const KPIShow = () => {
   const dispatch = useDispatch();
+  const { hash } = useHashing();
   const {id} = useSelector(userData)
   const stat = useSelector(refStatData)
   // Функция для обработки нажатия кнопки поделиться
@@ -16,7 +18,8 @@ const KPIShow = () => {
   };
 
   useEffect(() => {
-    dispatch(GetStat(id))
+    const { requestData } = hash({id:id});
+    dispatch(GetStat(requestData))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
