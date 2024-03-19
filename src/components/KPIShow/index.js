@@ -28,13 +28,13 @@ const KPIShow = () => {
     <div className={styles.container}>
       <div className={styles.stat}>
         Total users<br />
-        <span className={styles.statValue}>0</span>
+        <span className={styles.statValue}>{stat.count}</span>
       </div>
       <div className={styles.stat}>
         Total balance<br />
-        <span className={styles.statValue}>0 usdt</span>
+        <span className={styles.statValue}>{stat.bal} usdt</span>
       </div>
-      <CircularProgressBar value={25}/>
+      <CircularProgressBar value={stat.kpi}/>
       <div
         className={styles.shareButton}
         onClick={shareProject}
