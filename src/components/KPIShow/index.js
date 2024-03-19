@@ -32,7 +32,6 @@ const KPIShow = () => {
         <span className={styles.statValue}>0 usdt</span>
       </div>
       <CircularProgressBar value={25}/>
-
       <div
         className={styles.shareButton}
         onClick={shareProject}
