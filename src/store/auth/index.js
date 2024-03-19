@@ -58,6 +58,14 @@ export const GetCrypto = createAsyncThunk(
   }
 );
 
+export const GetStat = createAsyncThunk(
+  'GetStat',
+  async (params) => {
+    const {data} = await axiosInstance.post('getStat', params);
+    return data;
+  }
+);
+
 const initialState = {
   user: null,
   wallets:  null,
@@ -68,6 +76,7 @@ const initialState = {
   fiat: null,
   crypto: null,
   trans: null,
+  refStat: null,
   isAuthenticated: false,
   isLoggedIn: false,
   onSuccess: null,
@@ -181,6 +190,18 @@ const authSlice = createSlice({
       state.onSuccess = true;
     });
     builder.addCase(GetTrans.rejected, (state, action) => {
+      state.loader = false; // Останавливаем индикатор загрузки
+      state.error = action.error.message;
+    });
+    //GetStat
+    builder.addCase(GetStat.pending, (state) => {
+      state.loader = true;
+    });
+    builder.addCase(GetStat.fulfilled, (state, {payload}) => {
+      state.refStat = payload;
+      state.onSuccess = true;
+    });
+    builder.addCase(GetStat.rejected, (state, action) => {
       state.loader = false; // Останавливаем индикатор загрузки
       state.error = action.error.message;
     });

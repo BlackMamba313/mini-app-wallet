@@ -8,4 +8,6 @@ export const transactionsData = ({ auth }) => auth.trans?.data;
 
 export const walletData = ({ auth }) => auth.currentWallet;
 
+export const refStatData = ({ auth }) => auth.refStat;
+
 
