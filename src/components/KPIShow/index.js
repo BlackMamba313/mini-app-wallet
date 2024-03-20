@@ -12,8 +12,11 @@ const KPIShow = () => {
   const {id} = useSelector(userData)
   const stat = useSelector(refStatData)
   // Функция для обработки нажатия кнопки поделиться
+
   const shareProject = () => {
     const refShare = `${process.env.REACT_APP_URL_JOKER_REG}?ref=${id}`;
+
+    // Пытаемся использовать Web Share API
     if (navigator.share) {
       navigator.share({
         title: 'Joker',
@@ -22,7 +25,23 @@ const KPIShow = () => {
       }).then(() => console.log('Успешный шаринг'))
         .catch((error) => console.log('Ошибка при шаринге', error));
     } else {
-      alert('Шаринг не поддерживается, попробуйте скопировать ссылку вручную.');
+      // Web Share API не поддерживается
+      // Выводим инструкцию для копирования ссылки вручную
+      alert('Шаринг не поддерживается. Попробуйте скопировать ссылку вручную: ' + refShare);
+
+      // Дополнительно: автоматическое копирование в буфер обмена (опционально)
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(refShare).then(() => {
+          alert('Ссылка скопирована в буфер обмена');
+        }).catch(err => {
+          console.error('Не удалось скопировать ссылку', err);
+          // Выводим сообщение с ссылкой для ручного копирования
+          prompt('Нажмите Ctrl+C для копирования', refShare);
+        });
+      } else {
+        // Выводим сообщение с ссылкой для ручного копирования, если Clipboard API тоже не поддерживается
+        prompt('Нажмите Ctrl+C для копирования', refShare);
+      }
     }
   };
 
