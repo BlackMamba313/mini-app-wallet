@@ -13,35 +13,12 @@ const KPIShow = () => {
   const stat = useSelector(refStatData)
   // Функция для обработки нажатия кнопки поделиться
 
-  const shareProject = () => {
+  const handleCopy = async () => {
     const refShare = `${process.env.REACT_APP_URL_JOKER_REG}?ref=${id}`;
-
-    // Пытаемся использовать Web Share API
-    if (navigator.share) {
-      navigator.share({
-        title: 'Joker',
-        text: 'Выигрывают здесь',
-        url: refShare,
-      }).then(() => console.log('Успешный шаринг'))
-        .catch((error) => console.log('Ошибка при шаринге', error));
-    } else {
-      // Web Share API не поддерживается
-      // Выводим инструкцию для копирования ссылки вручную
-      alert('Шаринг не поддерживается. Попробуйте скопировать ссылку вручную: ' + refShare);
-
-      // Дополнительно: автоматическое копирование в буфер обмена (опционально)
-      if (navigator.clipboard) {
-        navigator.clipboard.writeText(refShare).then(() => {
-          alert('Ссылка скопирована в буфер обмена');
-        }).catch(err => {
-          console.error('Не удалось скопировать ссылку', err);
-          // Выводим сообщение с ссылкой для ручного копирования
-          prompt('Нажмите Ctrl+C для копирования', refShare);
-        });
-      } else {
-        // Выводим сообщение с ссылкой для ручного копирования, если Clipboard API тоже не поддерживается
-        prompt('Нажмите Ctrl+C для копирования', refShare);
-      }
+    try {
+      await navigator.clipboard.writeText(refShare);
+    } catch (err) {
+      console.error('Не удалось скопировать текст: ', err);
     }
   };
 
@@ -66,7 +43,7 @@ const KPIShow = () => {
         <CircularProgressBar value={stat.kpi}/>
         <div
           className={styles.shareButton}
-          onClick={shareProject}
+          onClick={handleCopy}
         >
           Share Project
         </div>
