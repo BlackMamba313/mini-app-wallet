@@ -13,8 +13,17 @@ const KPIShow = () => {
   const stat = useSelector(refStatData)
   // Функция для обработки нажатия кнопки поделиться
   const shareProject = () => {
-    const refShare = `${process.env.REACT_APP_URL_JOKER_REG}?ref=${id}`
-    navigator.clipboard.writeText(refShare);
+    const refShare = `${process.env.REACT_APP_URL_JOKER_REG}?ref=${id}`;
+    if (navigator.share) {
+      navigator.share({
+        title: 'Joker',
+        text: 'Выигрывают здесь',
+        url: refShare,
+      }).then(() => console.log('Успешный шаринг'))
+        .catch((error) => console.log('Ошибка при шаринге', error));
+    } else {
+      alert('Шаринг не поддерживается, попробуйте скопировать ссылку вручную.');
+    }
   };
 
   useEffect(() => {
