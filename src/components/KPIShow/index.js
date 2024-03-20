@@ -5,6 +5,7 @@ import {refStatData, userData} from "../../store/auth/selectors";
 import {useDispatch, useSelector} from "react-redux";
 import {GetStat} from "../../store/auth";
 import useHashing from "../../hooks/useHashing";
+import Swal from 'sweetalert2'
 
 const KPIShow = () => {
   const dispatch = useDispatch();
@@ -17,7 +18,21 @@ const KPIShow = () => {
     const refShare = `${process.env.REACT_APP_URL_JOKER_REG}?ref=${id}`;
     try {
       await navigator.clipboard.writeText(refShare);
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Ваша ссылка скопированна",
+        showConfirmButton: false,
+        timer: 1500
+      });
     } catch (err) {
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: "Ваша ссылка не скопированна",
+        showConfirmButton: false,
+        timer: 1500
+      });
       console.error('Не удалось скопировать текст: ', err);
     }
   };
