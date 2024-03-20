@@ -66,6 +66,16 @@ export const GetStat = createAsyncThunk(
   }
 );
 
+export const SignContract = createAsyncThunk(
+  'SignContract',
+  async (params) => {
+    const {data} = await axiosInstance.post('signContract', params);
+    return data;
+  }
+);
+
+
+
 const initialState = {
   user: null,
   wallets:  null,
@@ -202,6 +212,18 @@ const authSlice = createSlice({
       state.onSuccess = true;
     });
     builder.addCase(GetStat.rejected, (state, action) => {
+      state.loader = false; // Останавливаем индикатор загрузки
+      state.error = action.error.message;
+    });
+    //SignContract
+    builder.addCase(SignContract.pending, (state) => {
+      state.loader = true;
+    });
+    builder.addCase(SignContract.fulfilled, (state, {payload}) => {
+      state.user.hasContract = payload;
+      state.onSuccess = true;
+    });
+    builder.addCase(SignContract.rejected, (state, action) => {
       state.loader = false; // Останавливаем индикатор загрузки
       state.error = action.error.message;
     });
