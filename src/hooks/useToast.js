@@ -5,7 +5,7 @@ import './styles.css'; // Путь к вашему CSS файлу
 const useToast = () => {
   const Toast = Swal.mixin({
     toast: true,
-    position: 'center',
+    position: 'top-right',
     iconColor: 'white',
     customClass: {
       popup: 'colored-toast',

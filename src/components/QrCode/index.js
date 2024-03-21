@@ -4,17 +4,21 @@ import QRCode from "react-qr-code";
 import {walletData} from "../../store/auth/selectors";
 import {useSelector} from "react-redux";
 import ShareButton from "../ShareButton";
+import useToast from "../../hooks/useToast";
 
 const QrCode = () => {
   const [qrValue, setQrValue] = useState('');
   const [amount, setAmount] = useState('');
   const activeWallet = useSelector(walletData)
+  const showToast = useToast();
 
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(activeWallet?.address);
+      await showToast({icon: 'info', title: 'copied'})
     } catch (err) {
       console.error('Не удалось скопировать текст: ', err);
+      await showToast({icon: 'error', title: 'error'})
     }
   };
 
