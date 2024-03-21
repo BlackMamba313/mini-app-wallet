@@ -5,10 +5,12 @@ import {useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import useHashing from "../../hooks/useHashing";
 import {transfer} from "../../store/auth";
+import useToast from "../../hooks/useToast";
 
 const TransferConfirmation = ({ transferData, setTransferData }) => {
-  const [isSend, setIsSend] = useState('waiting');
+  const [isSend, setIsSend] = useState(false);
   const navigate = useNavigate();
+  const showToast = useToast();
   const dispatch = useDispatch();
   const { hash } = useHashing();
   console.log(transferData)
@@ -24,23 +26,23 @@ const TransferConfirmation = ({ transferData, setTransferData }) => {
     try {
       const response = await dispatch(transfer(requestData));
       if (response.type === 'transfer/fulfilled') {
-        setIsSend('success')
+        setIsSend(true)
         setTimeout(() => {
           navigate(`/`); // Редирект на главную страницу
-        }, 1000);
+        }, 1500);
       } else {
         console.error("Ошибка или недостаточно данных для перевода");
-        setIsSend('reject')
+        await showToast({icon: 'error', title: 'transfer error!'})
         setTimeout(() => {
           setTransferData(null)
-        }, 1000);
+        }, 1500);
       }
     } catch (error) {
       console.error("Ошибка выполнения запроса на перевод", error);
-      setIsSend('reject')
+      await showToast({icon: 'error', title: 'transfer error!'})
       setTimeout(() => {
         setTransferData(null)
-      }, 1000);
+      }, 1500);
     }
   };
 

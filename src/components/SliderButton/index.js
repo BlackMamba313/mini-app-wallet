@@ -32,43 +32,32 @@ const SliderButton = ({ isSend, onConfirm }) => {
     }
   };
 
-  if (isSend === 'waiting') {
-    // Рендер слайдера для подтверждения
-    return (
-      <motion.div className={styles.sliderBackground}>
-        <motion.div className={styles.sliderButton}
-                    drag="x"
-                    dragConstraints={{ left: 0, right: sliderWidth }}
-                    onDragEnd={handleDragEnd}
-                    dragElastic={0.2}
-                    animate={controls}
-                    whileDrag={{ scale: 1.1 }}
+  return (
+    <div className={styles.sliderContainer} ref={containerRef}>
+      {isSend ? (
+        // Отображение затенённого слайдера с надписью при завершении
+        <motion.div className={styles.completionOverlay}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
         >
-          Подтвердить
+          Отправлено!
         </motion.div>
-      </motion.div>
-    );
-  } else if (isSend === 'success') {
-    // Рендер сообщения об успехе
-    return (
-      <motion.div className={styles.completionOverlay}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-      >
-        Отправлено!
-      </motion.div>
-    );
-  } else if (isSend === 'reject') {
-    // Рендер сообщения об ошибке
-    return (
-      <motion.div className={styles.rejectOverlay}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-      >
-        Ошибка !
-      </motion.div>
-    );
-  }
+      ) : (
+        <motion.div className={styles.sliderBackground}>
+          <motion.div className={styles.sliderButton}
+                      drag="x"
+                      dragConstraints={{ left: 0, right: sliderWidth }}
+                      onDragEnd={handleDragEnd}
+                      dragElastic={0.2}
+                      animate={controls}
+                      whileDrag={{ scale: 1.1 }}
+          >
+            Подтвердить
+        </motion.div>
+        </motion.div>
+      )}
+    </div>
+  );
 };
 
 export default SliderButton;
