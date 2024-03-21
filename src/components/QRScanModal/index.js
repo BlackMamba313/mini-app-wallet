@@ -1,11 +1,12 @@
 import React, {useEffect, useRef} from 'react';
 import jsQR from 'jsqr';
 import styles from './QRScanModal.module.css';
+import useToast from "../../hooks/useToast";
 
 const QRScanModal = ({ onScan }) => {
   const videoRef = useRef(null);
   const canvasRef = useRef(document.createElement('canvas'));
-
+  const showToast = useToast();
   useEffect(() => {
     // Функция для запроса доступа к камере и запуска видеопотока
     const startVideo = async () => {
@@ -17,7 +18,7 @@ const QRScanModal = ({ onScan }) => {
           scanQRCode();
         }
       } catch (err) {
-        console.error('Ошибка доступа к камере:', err);
+        await showToast({icon: 'error', title: 'Error!'})
       }
     };
 
@@ -49,8 +50,8 @@ const QRScanModal = ({ onScan }) => {
       scan();
     };
 
-    startVideo();
-  }, [onScan]);
+    startVideo().then(r => {});
+  }, [onScan, showToast]);
 
   return (
     <div className={styles.wrapper}>

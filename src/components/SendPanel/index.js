@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import QRScanModal from '../QRScanModal';
 import TransferForm from '../TransferForm';
-import TransferConfirmation from '../TransferConfirmation'; // Импорт нового компонента
+import TransferConfirmation from '../TransferConfirmation';
 import {useDispatch, useSelector} from "react-redux";
 import {userData, walletData} from "../../store/auth/selectors";
 import useHashing from "../../hooks/useHashing";
 import {transfer} from "../../store/auth";
 import styles from './SendPanel.module.css';
-import Swal from "sweetalert2";
+import useToast from "../../hooks/useToast";
 
 const SendPanel = ({isScannerOpen, setIsScannerOpen}) => {
   const dispatch = useDispatch();
   const { hash } = useHashing();
+  const showToast = useToast();
   // Хуки, состояния, функции обработки...
   const [transferData, setTransferData] = useState(null);
   const { id }  = useSelector(userData) || {};
@@ -28,22 +29,10 @@ const SendPanel = ({isScannerOpen, setIsScannerOpen}) => {
         // Переходим в режим подтверждения
       } else {
         // Обработка ошибки или недостаточной информации для перевода
-        Swal.fire({
-          position: "top-end",
-          icon: "error",
-          title: 'transfer error',
-          showConfirmButton: false,
-          timer: 1500
-        });
+        await showToast({icon: 'error', title: 'transfer error!'})
       }
     } catch (error) {
-      Swal.fire({
-        position: "top-end",
-        icon: "error",
-        title: error,
-        showConfirmButton: false,
-        timer: 1500
-      });
+      await showToast({icon: 'error', title: error})
     }
   };
   // Функции onSubmit, onConfirm и т.д...
@@ -58,10 +47,10 @@ const SendPanel = ({isScannerOpen, setIsScannerOpen}) => {
         setTransferData(response);
       } else {
         // Обработка ошибки или недостаточной информации для перевода
-        console.error("Ошибка или недостаточно данных для перевода");
+        await showToast({icon: 'error', title: 'transfer error!'})
       }
     } catch (error) {
-      console.error("Ошибка выполнения запроса на перевод", error);
+      await showToast({icon: 'error', title: 'transfer error!'})
     }
   };
 
