@@ -7,6 +7,7 @@ import {userData, walletData} from "../../store/auth/selectors";
 import useHashing from "../../hooks/useHashing";
 import {transfer} from "../../store/auth";
 import styles from './SendPanel.module.css';
+import Swal from "sweetalert2";
 
 const SendPanel = ({isScannerOpen, setIsScannerOpen}) => {
   const dispatch = useDispatch();
@@ -27,10 +28,22 @@ const SendPanel = ({isScannerOpen, setIsScannerOpen}) => {
         // Переходим в режим подтверждения
       } else {
         // Обработка ошибки или недостаточной информации для перевода
-        console.error("Ошибка или недостаточно данных для перевода");
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: 'transfer error',
+          showConfirmButton: false,
+          timer: 1500
+        });
       }
     } catch (error) {
-      console.error("Ошибка выполнения запроса на перевод", error);
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: error,
+        showConfirmButton: false,
+        timer: 1500
+      });
     }
   };
   // Функции onSubmit, onConfirm и т.д...
@@ -53,7 +66,7 @@ const SendPanel = ({isScannerOpen, setIsScannerOpen}) => {
   };
 
   if (transferData) {
-    return <TransferConfirmation transferData={transferData} />;
+    return <TransferConfirmation transferData={transferData} setTransferData={setTransferData} />;
   }
 
   // Возвращение TransferForm и QRScanModal, если не в режиме подтверждения

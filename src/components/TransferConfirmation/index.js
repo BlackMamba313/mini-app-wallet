@@ -6,8 +6,8 @@ import {useDispatch} from "react-redux";
 import useHashing from "../../hooks/useHashing";
 import {transfer} from "../../store/auth";
 
-const TransferConfirmation = ({ transferData }) => {
-  const [isSend, setIsSend] = useState(false);
+const TransferConfirmation = ({ transferData, setTransferData }) => {
+  const [isSend, setIsSend] = useState('waiting');
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { hash } = useHashing();
@@ -24,15 +24,23 @@ const TransferConfirmation = ({ transferData }) => {
     try {
       const response = await dispatch(transfer(requestData));
       if (response.type === 'transfer/fulfilled') {
-        setIsSend(true)
+        setIsSend('success')
         setTimeout(() => {
           navigate(`/`); // Редирект на главную страницу
         }, 1000);
       } else {
         console.error("Ошибка или недостаточно данных для перевода");
+        setIsSend('reject')
+        setTimeout(() => {
+          setTransferData(null)
+        }, 1000);
       }
     } catch (error) {
       console.error("Ошибка выполнения запроса на перевод", error);
+      setIsSend('reject')
+      setTimeout(() => {
+        setTransferData(null)
+      }, 1000);
     }
   };
 
