@@ -1,76 +1,110 @@
 //ts-nocheck
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import axiosInstance from '../axios';
+import { hashRequestData } from '../../utils/hashRequestData';
+import { showToast } from '../../utils/ShowToast';
 
 export const auth = createAsyncThunk(
   'auth',
-  async (params) => {
-    const {data} = await axiosInstance.post('authuser', params);
-    return data;
+  async (params, { rejectWithValue }) => {
+    try {
+      const requestData = hashRequestData(params);
+      const { data } = await axiosInstance.post('authuser', requestData);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.response ? error.response.data : 'Unknown error');
+    }
   }
 );
 
 export const transfer = createAsyncThunk(
   'transfer',
-  async (params) => {
-    const {data} = await axiosInstance.post('transfer', params);
-    return data;
+  async (params, { rejectWithValue }) => {
+    try {
+      const requestData = hashRequestData(params);
+      const { data } = await axiosInstance.post('transfer', requestData);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.response ? error.response.data : 'Unknown error');
+    }
   }
 );
 
 export const getCurrencyRate = createAsyncThunk(
   'getCurrencyRate',
-  async (params) => {
-    const {data} = await axiosInstance.post('getrate', params);
-    return data;
+  async (params, { rejectWithValue }) => {
+    try {
+      const requestData = hashRequestData(params);
+      const { data } = await axiosInstance.post('getrate', requestData);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.response ? error.response.data : 'Unknown error');
+    }
   }
 );
 
-// export const ChangeCurrentFiat = createAsyncThunk(
-//   'ChangeCurrentFiat',
-//   async (params) => {
-//     const {data} = await axiosInstance.post('authuser', params);
-//     return data;
-//   }
-// );
-
 export const GetFiat = createAsyncThunk(
   'GetFiat',
-  async (params) => {
-    const {data} = await axiosInstance.post('getfiat', params);
-    return data;
+  async (params, { rejectWithValue }) => {
+    try {
+      const requestData = hashRequestData(params);
+      const { data } = await axiosInstance.post('getfiat', requestData);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.response ? error.response.data : 'Unknown error');
+    }
   }
 );
 
 export const GetTrans = createAsyncThunk(
   'GetTrans',
-  async (params) => {
-    const {data} = await axiosInstance.post('gettrans', params);
-    return data;
+  async (params, { rejectWithValue }) => {
+    try {
+      const requestData = hashRequestData(params);
+      const { data } = await axiosInstance.post('gettrans', requestData);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.response ? error.response.data : 'Unknown error');
+    }
   }
 );
 
 export const GetCrypto = createAsyncThunk(
   'GetCrypto',
-  async (params) => {
-    const {data} = await axiosInstance.post('getcrypto', params);
-    return data;
+  async (params, { rejectWithValue }) => {
+    try {
+      const requestData = hashRequestData(params);
+      const { data } = await axiosInstance.post('getcrypto', requestData);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.response ? error.response.data : 'Unknown error');
+    }
   }
 );
 
 export const GetStat = createAsyncThunk(
   'GetStat',
-  async (params) => {
-    const {data} = await axiosInstance.post('getStat', params);
-    return data;
+  async (params, { rejectWithValue }) => {
+    try {
+      const requestData = hashRequestData(params);
+      const { data } = await axiosInstance.post('getStat', requestData);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.response ? error.response.data : 'Unknown error');
+    }
   }
 );
 
 export const SignContract = createAsyncThunk(
   'SignContract',
-  async (params) => {
-    const {data} = await axiosInstance.post('signContract', params);
-    return data;
+  async (params, { rejectWithValue }) => {
+    try {
+      const requestData = hashRequestData(params);
+      const { data } = await axiosInstance.post('signContract', requestData);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.response ? error.response.data : 'Unknown error');
+    }
   }
 );
 
@@ -153,7 +187,8 @@ const authSlice = createSlice({
     });
     builder.addCase(transfer.rejected, (state, action) => {
       state.loader = false; // Останавливаем индикатор загрузки
-      state.error = action.error.message;
+      state.error = action.payload.msg;
+      showToast({icon: 'error', title: action.payload.msg})
     });
     //getCurrencyRate
     builder.addCase(getCurrencyRate.pending, (state) => {

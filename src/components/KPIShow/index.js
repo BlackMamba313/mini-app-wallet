@@ -4,13 +4,11 @@ import CircularProgressBar from "../CircularProgressBar";
 import {refStatData, userData} from "../../store/auth/selectors";
 import {useDispatch, useSelector} from "react-redux";
 import {GetStat} from "../../store/auth";
-import useHashing from "../../hooks/useHashing";
 import useToast from "../../hooks/useToast";
 
 
 const KPIShow = () => {
   const dispatch = useDispatch();
-  const {hash} = useHashing();
   const {id} = useSelector(userData)
   const stat = useSelector(refStatData)
   const showToast = useToast();
@@ -28,8 +26,7 @@ const KPIShow = () => {
   };
 
   useEffect(() => {
-    const {requestData} = hash({id: id});
-    dispatch(GetStat(requestData))
+    dispatch(GetStat({id: id}))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

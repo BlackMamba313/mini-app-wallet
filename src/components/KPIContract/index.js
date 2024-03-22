@@ -2,17 +2,14 @@ import React from 'react';
 import styles from './KPIContract.module.css';
 import {userData} from "../../store/auth/selectors";
 import {useDispatch, useSelector} from "react-redux";
-import useHashing from "../../hooks/useHashing";
 import {SignContract} from "../../store/auth";
 
 const KPIContract = () => {
   const dispatch = useDispatch();
-  const {hash} = useHashing();
   const {id} = useSelector(userData)
   // Функция для обработки нажатия кнопки Согласен
   const clickBtn = () => {
-    const {requestData} = hash({id: id});
-    dispatch(SignContract(requestData))
+    dispatch(SignContract({id: id}))
   }
 
   return (
