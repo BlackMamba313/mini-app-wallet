@@ -1,9 +1,20 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { useForm } from 'react-hook-form';
+import { useLocation } from 'react-router-dom'; // Импортируем useLocation
 import styles from './TransferForm.module.css';
 
 const TransferForm = ({ onSubmit }) => {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors }, setValue } = useForm();
+  const location = useLocation(); // Получаем текущий URL
+
+  // Извлекаем параметр 'address' из URL
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+    const address = queryParams.get('address');
+    if (address) {
+      setValue('address', address);
+    }
+  }, [location, setValue]);
 
   return (
     <form className={styles.wrapper} onSubmit={handleSubmit(onSubmit)}>
@@ -13,7 +24,7 @@ const TransferForm = ({ onSubmit }) => {
         placeholder='Адрес кошелька'
         className={styles.input}
       />
-      {errors.walletAddress && <span>Это поле обязательно</span>}
+      {errors.address && <span>{errors.address.message}</span>}
       <input
         {...register("amount", {
           required: "Это поле обязательно",
@@ -34,3 +45,4 @@ const TransferForm = ({ onSubmit }) => {
 };
 
 export default TransferForm;
+
