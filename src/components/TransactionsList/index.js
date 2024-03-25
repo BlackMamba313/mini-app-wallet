@@ -1,14 +1,25 @@
 import React, { useState } from 'react';
 import styles from './TransactionsList.module.css';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import TransactionDetails from "../TransactionDetails";
 import Transaction from "../Transaction";
 
 const TransactionsList = ({ transactions }) => {
   const [expanded, setExpanded] = useState(null);
+  const [isAnimating, setIsAnimating] = useState(false);
 
-  const toggleExpanded = (id) => {
+  const toggleExpanded = (id, e) => {
+    if (isAnimating) {
+      return;
+    }
+    setIsAnimating(true);
+    console.log(`Toggling expansion for transaction with ID: ${id}`);
+    e.stopPropagation();
     setExpanded(expanded === id ? null : id);
+
+    setTimeout(() => {
+      setIsAnimating(false);
+    }, 500); // предполагается, что ваша анимация занимает 500 мс
   };
 
   // Анимация для деталей
@@ -24,12 +35,22 @@ const TransactionsList = ({ transactions }) => {
                     layout
                     initial="hidden"
                     animate={expanded === transaction.id ? "visible" : "hidden"}
-                    className={`${styles.transactionCard}`}
-                    onClick={() => toggleExpanded(transaction.id)}>
+                    className={styles.transactionCard}
+                    onClick={(e) => toggleExpanded(transaction.id, e)}>
           <Transaction transaction={transaction}/>
-          <motion.div  variants={detailsAnimation}>
-            <TransactionDetails transaction={transaction}/>
-          </motion.div>
+          <AnimatePresence>
+            {expanded === transaction.id && (
+              <motion.div
+                className={expanded === transaction.id ? styles.detailsVisible : styles.detailsHidden}
+                variants={detailsAnimation}
+                initial="hidden"
+                animate="visible"
+                exit="hidden"
+              >
+                <TransactionDetails transaction={transaction}/>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </motion.div>
       ))}
     </div>
@@ -37,6 +58,7 @@ const TransactionsList = ({ transactions }) => {
 };
 
 export default TransactionsList;
+
 
 
 
