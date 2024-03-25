@@ -13,7 +13,6 @@ const TransactionsList = ({ transactions }) => {
       return;
     }
     setIsAnimating(true);
-    console.log(`Toggling expansion for transaction with ID: ${id}`);
     e.stopPropagation();
     setExpanded(expanded === id ? null : id);
 
