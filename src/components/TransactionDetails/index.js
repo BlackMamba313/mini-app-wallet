@@ -25,10 +25,10 @@ const TransactionDetails = ({transaction}) => {
         </div>
       </div>
       <div className={styles.buttons}>
-        <div onClick={clickSafe} className={styles.buttonL} >
+        <div onClick={(e)=> clickSafe(e)} className={styles.buttonL} >
           Сохранить
         </div>
-        <div onClick={clickSend} className={styles.buttonR}>
+        <div onClick={(e)=> clickSend(e)} className={styles.buttonR}>
           Отправить
         </div>
       </div>

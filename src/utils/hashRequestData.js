@@ -3,7 +3,6 @@ import CryptoJS from 'crypto-js';
 // Функция для хеширования и подготовки данных
 export const hashRequestData = (dataToHash) => {
   const secretKey = process.env.REACT_APP_SECRET_KEY_HASH; // Убедитесь, что ключ доступен в переменных окружения
-  console.log('использована просто функция')
   // Добавляем временную метку и преобразуем логические значения
   const preparedData = {
     ...dataToHash,
